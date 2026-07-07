@@ -61,4 +61,73 @@
 7. Route Groups
 - /src/app/(auth)
 
+## Layouts
+- UI component that is shared among different pages
+- `layout.js` or `layout.tsx`
+
+
+## Special files of Next.js
+
+- page.js
+- layout.js
+- not-found.js
+- loading.js
+- error.js //always client component
+
+
+## Link 
+
+- <Link> for navigation, similar to <a>
+- For programmatic navigation, use the `useRouter` hook.
+
+
+## Params & SearchParams
+
+1. For server component
+- params: dynamic route params, available on page.js & layout.js
+- searchParams: query, available on page.js
+ 
+ 2. For client component
+ - useParams()
+ - useSearchParams()
+
+
+## Metadata
+- Metadata api is used to define metadata of the page
+- page.js / layout.js
+- Useful of search engine optimization (SEO)
+- static: metadata
+- dynamic: generateMetadata
+
+
+## Rendering: SSR, CSR, SSG
+- Process of converting/transforming component code into UI.
+- Client side rendering (CSR) and Server side rendering (SSR)
+- Static site generation (SSG) are generated during app build.
+- Note: Components are server side rendered in Next.js, and client side rendered in React.js
+
+## CSR
+- If rendering is done in browser -> CSR
+
+## SSR
+- If rendering is done in server -> SSR
+
+
+## React Server Component
+## Client Component
+- Interactivity
+- Event, User interaction
+- State management
+- To make client component, `use client` directive
+- Client components can be both CSR or SSR
+
+## Server Component
+- Fetch data from API
+- Send API request
+- Metadata
+- By default, all componets in Next.js are Server component
+- Only SSR
+
+
+
 

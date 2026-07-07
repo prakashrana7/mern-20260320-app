@@ -1,8 +1,22 @@
-const ProductsPage = () => {
+export const metadata = {
+  title: "Products",
+};
+import Link from "next/link";
+
+const ProductsPage = async ({ searchParams }) => {
+  const products = await fetch(
+    "https://mern-20260320-api.vercel.app/api/products",
+  ).then((res) => res.json());
+
   return (
-    <div>
-      ProductsPage
-    </div>
+    <>
+      <h1 className="text-3xl">Products</h1>
+      {products.map((product, index) => (
+        <li key={index}>
+          <Link href={`/products/${product._id}`}>{product.name}</Link>
+          </li>
+        ))}
+    </>
   );  
 };
 
