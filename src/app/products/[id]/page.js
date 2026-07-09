@@ -2,7 +2,7 @@ import Image from "next/image";
 
 async function fetchProductsById(id) {
   const product = await fetch(
-    `https://mern-20260320-api.vercel.app/api/products/${id}`,
+    `http://localhost:8000/api/products/${id}`,
   ).then((data) => data.json());
   
   if(!product.name){

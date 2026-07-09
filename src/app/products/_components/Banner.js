@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-import watchImage from "@/assets/images/shoes.png"
+import shoeImage from "@/assets/images/shoes.png"
 const ProductBanner = () => {
   return (
     <div className="rounded-xl p-10 bg-linear-to-r from-blue-800 via-blue-300 to-blue-700 shadow-xl grid grid-cols-3 items-center">
@@ -8,7 +8,7 @@ const ProductBanner = () => {
         New Arrival
       </h2>
       <Image
-        src={watchImage}
+        src={shoeImage}
         height={400}
         width={400}
         className="h-36 w-auto mx-auto"
