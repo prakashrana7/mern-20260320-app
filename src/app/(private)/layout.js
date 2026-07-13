@@ -19,9 +19,9 @@ const PrivateLayout = ({children}) => {
 
     if (!isAuthenticated) return;
   return (
-    <div>
+    <>
       {children}
-    </div>
+    </>
   )
 }
 

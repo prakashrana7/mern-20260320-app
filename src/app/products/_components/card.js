@@ -12,14 +12,14 @@ const ProductCard = ({ name, brand, category, price, _id, imageUrls }) => {
           <Link href={`${PRODUCTS_ROUTE}/${_id}`}><h4 className="dark:text-white font-semibold text-xl pt-1 pb-2">{name}</h4>  </Link>
           <p>Brand: <strong>{brand}</strong></p>
           <p className="my-1 font-bold text-2xl text-primary">Rs. {price}</p>
-          <div className="grid grid-cols-[auto_1fr] justify-between items-center gap-4">
+          <div className="grid grid-cols-2 gap-4 items-center w-full mt-2">
           <Link
             href={`${PRODUCTS_ROUTE}/${_id}`}
-            className="px-10 bg-background dark:bg-gray-800 py-2 w-full text-center rounded-3xl mt-2 text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300"
+             className="bg-background dark:bg-gray-800 py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300 border border-transparent dark:border-gray-700"
           >
             View
           </Link>
-          <button className="bg-primary px-4 py-2 w-full text-center rounded-2xl mt-2 text-sm font-medium transition duration-300 ease text-white">
+          <button className="bg-primary py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease text-white">
             Add to Cart
           </button>
           </div>

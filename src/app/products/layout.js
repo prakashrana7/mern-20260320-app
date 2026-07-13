@@ -2,7 +2,7 @@ import ProductBanner from "./_components/Banner";
 
 const ProductLayout = ({children}) => {
   return (
-    <div className="container mx-auto px-30 py-10">
+    <div className="container mx-auto px-10 py-10">
       <ProductBanner/>
       <section className="py-12">
         {children}

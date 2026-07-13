@@ -7,10 +7,12 @@ import logo from '@/assets/images/logo.png';
 import Image from 'next/image';
 import useAuthStore from '@/stores/authStore';
 import { useEffect } from 'react';
+import usePreferenceStore from '@/stores/preferenceStore';
 
 const Header = () => {
   const pathname = usePathname();
   const {isAuthenticated, logout} = useAuthStore.getState();
+  const {toggleTheme, theme} = usePreferenceStore.getState();
 
   const router = useRouter();
 
@@ -26,7 +28,7 @@ const Header = () => {
   <div className="container max-w-6xl mx-auto px-4">
     <div className="flex items-center justify-between gap-4">
       <div className="flex items-center gap-2">
-        <Image src={logo} alt="StepStyle" height={32} width={32} className="h-9" />
+        <Image src={logo} alt="StepStyle" height={0} width={44} className="h-10 w-10 dark:invert-[1] dark:hue-rotate-[180deg]" />
         <h1 className="text-2xl font-bold mt-1 text-transparent bg-linear-to-r from-primary to-secondary bg-clip-text">
             StepStyle
         </h1>
@@ -48,11 +50,8 @@ const Header = () => {
           })}
       </nav>
       <div className="flex items-center gap-4">
-        <button id="lightThemeSwitcher" className="hidden dark:block px-2 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700">
-          🌞
-        </button>
-        <button id="darkThemeSwitcher" className="dark:hidden px-2 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700">
-          🌙
+        <button onClick={toggleTheme} className=" px-2 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700">
+          {theme == "light" ? "🌙":"🌞"}
         </button>
         {isAuthenticated ? (<><button className="px-4 pt-1 pb-2 rounded-3xl bg-gray-100 dark:bg-gray-700 h-auto">
           🛒
