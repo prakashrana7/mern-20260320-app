@@ -2,9 +2,11 @@ export const HOME_ROUTE="/";
 export const ABOUT_ROUTE="/about";
 export const CONTACT_ROUTE="/contact";
 export const PRODUCTS_ROUTE="/products";
-export const ORDERS_ROUTE="/orders";
+export const ORDER_ROUTE="/orders";
 export const LOGIN_ROUTE="/login";
 export const REGISTER_ROUTE="/register";
+export const CART_ROUTE="/cart";
+export const ORDERS_ROUTE="/orders";
 
 //Admin Routes
 
@@ -25,7 +27,7 @@ export const navMenu=[
     },
     {
         label: "Orders",
-        route: ORDERS_ROUTE,
+        route: ORDER_ROUTE,
     },
     {
         label: "Contact",

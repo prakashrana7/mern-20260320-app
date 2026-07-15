@@ -1,18 +1,22 @@
 "use client";
 
-import { HOME_ROUTE, LOGIN_ROUTE, navMenu } from '@/constants/routes';
+import { CART_ROUTE, HOME_ROUTE, LOGIN_ROUTE, navMenu } from '@/constants/routes';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import logo from '@/assets/images/logo.png';
 import Image from 'next/image';
 import useAuthStore from '@/stores/authStore';
-import { useEffect } from 'react';
 import usePreferenceStore from '@/stores/preferenceStore';
+import { FaMoon, FaSun } from 'react-icons/fa';
+import useCartStore from '@/stores/cartStore';
 
 const Header = () => {
   const pathname = usePathname();
   const {isAuthenticated, logout} = useAuthStore.getState();
-  const {toggleTheme, theme} = usePreferenceStore.getState();
+  const {toggleTheme} = usePreferenceStore.getState();
+
+  const theme = usePreferenceStore((state) => state.theme);
+   const products = useCartStore((state) => state.products);
 
   const router = useRouter();
 
@@ -21,7 +25,6 @@ const Header = () => {
     
     router.replace(LOGIN_ROUTE);
   }
-  useEffect(() => {}, [isAuthenticated]);
 
   return (
     <header className="  py-4 shadow-md bg-white dark:bg-gray-950 sticky top-0 z-10">
@@ -50,15 +53,15 @@ const Header = () => {
           })}
       </nav>
       <div className="flex items-center gap-4">
-        <button onClick={toggleTheme} className=" px-2 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700">
-          {theme == "light" ? "🌙":"🌞"}
+        <button onClick={toggleTheme} className=" px-2 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700 dark:text-white">
+          {theme == "light" ? <FaMoon/>:<FaSun/>}
         </button>
-        {isAuthenticated ? (<><button className="px-4 pt-1 pb-2 rounded-3xl bg-gray-100 dark:bg-gray-700 h-auto">
+        {isAuthenticated ? (<><Link href={CART_ROUTE} className="px-4 pt-1 pb-2 rounded-3xl bg-gray-100 dark:bg-gray-700 h-auto">
           🛒
           <span className="bg-primary px-2 py-0.5 text-xs rounded-xl text-white">
-            5
+            {products.length}
           </span>
-        </button>
+        </Link>
           <button className="bg-primary-dark text-white px-5 py-1.5 rounded-lg hover:bg-primary cursor-pointer"
           onClick={handleLogout}
           >Log out</button>
@@ -69,7 +72,13 @@ const Header = () => {
            href={LOGIN_ROUTE}
            >Login</Link>
            )}
+
+           <button data-collapse-toggle="navbar-sticky" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-body rounded-base md:hidden hover:bg-neutral-secondary-soft hover:text-heading focus:outline-none focus:ring-2 focus:ring-neutral-tertiary" aria-controls="navbar-sticky" aria-expanded="false">
+  <span className="sr-only">Open main menu</span>☰
+</button>
+
       </div>
+
     </div>
   </div>
 </header>

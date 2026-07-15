@@ -1,12 +1,12 @@
-"use client"
+"use client";
 
-import usePreferenceStore from "@/stores/preferenceStore"
+import usePreferenceStore from "@/stores/preferenceStore";
 
 const MainLayout = ({children}) => {
-    const {theme} = usePreferenceStore.getState();
+    const theme = usePreferenceStore((state) => state.theme);
 
   return (
-    <div className={theme}>{children}</div>
+    <div className={`${theme} dark:bg-gray-800 dark:text-white`}>{children}</div>
   )
 }
 

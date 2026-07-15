@@ -68,8 +68,8 @@ function applyFilters(){
         <h4 className="text-sm font-medium mb-1">Category:</h4>
         <select onChange={(event) => setCategoryFilter(event.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
             <option value="">Select Category</option>
-            {categories?.map(category => (
-                <option key={category} value={category}>{category}</option>
+            {categories?.map((category, index) => (
+                <option key={index} value={category}>{category}</option>
             ))}
         </select>
     </div>
@@ -106,8 +106,8 @@ function applyFilters(){
      <div  className='py-2'> 
         <h4 className="text-sm mb-1">Brands:</h4>
        <div>
-        {brands.map(brand=>(
-             <div key={brand} className="flex items-center mb-1">
+        {brands.map((brand, index)=>(
+             <div key={index} className="flex items-center mb-1">
             <input id={brand} type="checkbox" defaultValue onChange={()=>handleBrandsFilter(brand)} className="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft" />
             <label htmlFor={brand} className="select-none ms-2 text-sm font-medium text-heading">{brand}</label>
         </div> 

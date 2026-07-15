@@ -1,5 +1,4 @@
 import { getBrands, getCategories, getProducts } from "@/api/product";
-import Link from "next/link";
 import ProductCard from "./_components/Card";
 import Filters from "./_components/Filters";
 
@@ -19,7 +18,7 @@ const ProductsPage = async ({ searchParams }) => {
       <Filters brands={brands} categories={categories}/>
         <div className="self-start grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
       {products.map((product, index) => (
-        <ProductCard {...product} key={index}/>
+        <ProductCard product={product} key={index}/>
         ))}
        </div>
     </div>

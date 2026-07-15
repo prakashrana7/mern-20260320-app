@@ -6,21 +6,23 @@ import Image from "next/image";
 import sneakers from "@/assets/images/sneakers.webp";
 import collection from "@/assets/images/collection.jpg"
 import ContactPage from "./contact/page";
-import AboutPage from "./about/page";
 
   const Home = () => {
 
   return (
      <div>
-    <section id="hero" className=" bg-gray-100 py-12">
+    <section id="hero" className="py-12 px-4">
       <div className="container max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 md:items-center gap-8 lg:gap-16">
+           <div>
+            <Image src={banner} alt="hero image" className="w-auto rounded-2xl shadow-lg"/>
+          </div>
           <div className="" >
-            <span className="bg-gray-400 text-white text-xs font-bold px-4 py-1 rounded-xl">FOOTWEAR COLLECTION FOR ALL SEASON</span>
+            <span className="bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-xl">FOOTWEAR COLLECTION</span>
             <h1 className="mt-2 text-4xl text-primary font-extrabold tracking-tight md:text-5xl lg:text-6xl">
               Step into Style
             </h1>
-            <p className="text-dark text-medium py-4">
+            <p className="text-medium py-4 ">
               Discover the perfect pair from our curated collection of premium
               footwear. Quality, Comfort, and Style in every Step.
             </p>
@@ -28,15 +30,12 @@ import AboutPage from "./about/page";
            SHOP NOW<FaArrowCircleRight />
             </Link>
           </div>
-          <div>
-            <Image src={banner} alt="hero image" className="w-auto rounded-2xl shadow-lg"/>
-          </div>
         </div>
       </div>
     </section>
-    <section id="benefits" className="py-12 bg-gray-50/50 dark:bg-zinc-900/20">
+    <section id="benefits" className="py-12 px-4">
   <div className="container max-w-7xl mx-auto px-4">
-    <h2 className="text-center mb-10 font-bold text-2xl md:text-3xl dark:text-white tracking-tight">
+    <h2 className="text-center mb-10 font-bold text-2xl md:text-3xl tracking-tight">
       Why Choose Us
     </h2>
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -87,9 +86,9 @@ import AboutPage from "./about/page";
   </div>
 </section>
 
-    <section id="call-to-action" className="py-12 bg-gray-100 dark:bg-gray-900">
+    <section id="call-to-action" className="py-12 px-4">
       <div className="container max-w-7xl mx-auto px-4 ">
-        <div className="bg-primary p-8 rounded-2xl flex items-center flex-col text-white gap-4 dark:bg-gray-800">
+        <div className="bg-primary p-8 rounded-2xl flex items-center flex-col text-white gap-4 dark:bg-gray-900">
           <h2 className="text-2xl font-bold text-center text-white">
             Pre Booking Subscription
           </h2>
@@ -101,10 +100,10 @@ import AboutPage from "./about/page";
           </button>
           <dialog id="signupForm" className="w-full bg-transparnet">
             <div className="items-center bg-background dark:bg-gray-700 rounded-3xl flex flex-col h-max justify-center py-8 px-12 left-0 fixed top-1/2 w-full sm:left-1/4 sm:w-1/2">
-              <button className="absolute top-0 right-0 px-4 py-2 dark:text-white" >
+              <button className="absolute top-0 right-0 px-4 py-2" >
                 X
               </button>
-              <h2 className="text-dark dark:text-white text-2xl font-bold">
+              <h2 className="text-dark text-2xl font-bold">
                 Subscribe Us
               </h2>
               <form action="#">
@@ -119,22 +118,22 @@ import AboutPage from "./about/page";
         </div>
       </div>
     </section>
-    <section id="products" className="py-12">
+    <section id="products" className="py-12 px-4">
       <div className="container max-w-7xl mx-auto px-4">
         <h2 className="text-center mb-8 font-bold text-2xl dark:text-white">
           Products
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                 <div className="product-card bg-white">
+                 <div className="product-card">
                   <Image className="w-full h-40 object-contain" src={sneakers} alt="featured" height={300} width={400} />
-                  <div className="dark:bg-gray-900 pt-3 px-4 pb-4">
+                  <div className="bg-gray-100 dark:bg-gray-900 pt-3 px-4 pb-4">
                     <span className="inline-flex items-center rounded-md bg-accent px-2 py-1 text-xs font-medium text-white inset-ring inset-ring-gray-400/20">Sneakers</span>
-                    <h4 className="dark:text-white font-semibold text-xl pt-1 pb-2">White Classic Sneakers</h4>
+                    <h4 className="font-semibold text-xl pt-1 pb-2">White Classic Sneakers</h4>
                     <p>Brand: <strong>Nike</strong></p>
                     <p className="my-1 font-bold text-2xl text-primary">Rs. 2500</p>
                     <div className="grid grid-cols-2 gap-4 items-center w-full mt-2">
                     <button
-                       className="bg-background dark:bg-gray-800 py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300 border border-transparent dark:border-gray-700"
+                       className="bg-gray-200 dark:bg-gray-800 py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300 border border-transparent dark:border-gray-700"
                     >
                       View
                     </button>
@@ -144,16 +143,16 @@ import AboutPage from "./about/page";
                     </div>
                   </div>
                 </div>
-                 <div className="product-card bg-white">
+                 <div className="product-card">
                   <Image className="w-full h-40 object-contain" src={sneakers} alt="featured" height={300} width={400} />
-                  <div className="dark:bg-gray-900 pt-3 px-4 pb-4">
+                  <div className="bg-gray-100 dark:bg-gray-900 pt-3 px-4 pb-4">
                     <span className="inline-flex items-center rounded-md bg-accent px-2 py-1 text-xs font-medium text-white inset-ring inset-ring-gray-400/20">Sneakers</span>
-                    <h4 className="dark:text-white font-semibold text-xl pt-1 pb-2">White Classic Sneakers</h4>
+                    <h4 className="font-semibold text-xl pt-1 pb-2">White Classic Sneakers</h4>
                     <p>Brand: <strong>Nike</strong></p>
                     <p className="my-1 font-bold text-2xl text-primary">Rs. 2500</p>
                     <div className="grid grid-cols-2 gap-4 items-center w-full mt-2">
                     <button
-                       className="bg-background dark:bg-gray-800 py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300 border border-transparent dark:border-gray-700"
+                       className="bg-gray-200 dark:bg-gray-800 py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300 border border-transparent dark:border-gray-700"
                     >
                       View
                     </button>
@@ -163,16 +162,16 @@ import AboutPage from "./about/page";
                     </div>
                   </div>
                 </div>
-                 <div className="product-card bg-white">
+                 <div className="product-card">
                   <Image className="w-full h-40 object-contain" src={sneakers} alt="featured" height={300} width={400} />
-                  <div className="dark:bg-gray-900 pt-3 px-4 pb-4">
+                  <div className="bg-gray-100 dark:bg-gray-900 pt-3 px-4 pb-4">
                     <span className="inline-flex items-center rounded-md bg-accent px-2 py-1 text-xs font-medium text-white inset-ring inset-ring-gray-400/20">Sneakers</span>
-                    <h4 className="dark:text-white font-semibold text-xl pt-1 pb-2">White Classic Sneakers</h4>
+                    <h4 className="font-semibold text-xl pt-1 pb-2">White Classic Sneakers</h4>
                     <p>Brand: <strong>Nike</strong></p>
                     <p className="my-1 font-bold text-2xl text-primary">Rs. 2500</p>
                     <div className="grid grid-cols-2 gap-4 items-center w-full mt-2">
                     <button
-                       className="bg-background dark:bg-gray-800 py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300 border border-transparent dark:border-gray-700"
+                       className="bg-gray-200 dark:bg-gray-800 py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300 border border-transparent dark:border-gray-700"
                     >
                       View
                     </button>
@@ -182,16 +181,16 @@ import AboutPage from "./about/page";
                     </div>
                   </div>
                 </div>
-                 <div className="product-card bg-white">
+                 <div className="product-card">
                   <Image className="w-full h-40 object-contain" src={sneakers} alt="featured" height={300} width={400} />
-                  <div className="dark:bg-gray-900 pt-3 px-4 pb-4">
+                  <div className="bg-gray-100 dark:bg-gray-900 pt-3 px-4 pb-4">
                     <span className="inline-flex items-center rounded-md bg-accent px-2 py-1 text-xs font-medium text-white inset-ring inset-ring-gray-400/20">Sneakers</span>
-                    <h4 className="dark:text-white font-semibold text-xl pt-1 pb-2">White Classic Sneakers</h4>
+                    <h4 className="font-semibold text-xl pt-1 pb-2">White Classic Sneakers</h4>
                     <p>Brand: <strong>Nike</strong></p>
                     <p className="my-1 font-bold text-2xl text-primary">Rs. 2500</p>
                     <div className="grid grid-cols-2 gap-4 items-center w-full mt-2">
                     <button
-                       className="bg-background dark:bg-gray-800 py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300 border border-transparent dark:border-gray-700"
+                       className="bg-gray-200 dark:bg-gray-800 py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300 border border-transparent dark:border-gray-700"
                     >
                       View
                     </button>
@@ -205,23 +204,23 @@ import AboutPage from "./about/page";
       </div>
       
     </section>
-    <section id="featured" className="py-12 bg-gray-100 dark:bg-gray-900">
-  <div className="flex flex-col lg:flex-row max-w-7xl mx-auto px-2 lg:px-6  rounded-3xl p-6 lg:p-10 gap-8 items-center shadow-sm dark:bg-gray-800 ">
-    <div className="w-full lg:w-1/2 flex items-center justify-center rounded-2xl shadow-xs relative">
-      <Image src={collection} alt="banner-footwear-collection" className="max-w-auto h-full object-contain rounded-2xl" />
+    <section id="featured" className="py-12 px-6">
+  <div className=" container max-w-7xl mx-auto px-2 lg:px-10  rounded-3xl p-6 lg:p-10 gap-8 items-center bg-primary/10 flex flex-col lg:flex-row shadow-sm dark:bg-primary">
+    <div className="px-3 py-2 w-full lg:w-1/2 flex items-center justify-center rounded-2xl relative">
+      <Image src={collection} alt="banner-footwear-collection" className="max-w-auto h-full object-contain  shadow-sm rounded-2xl" />
     </div>
     <div className="w-full lg:w-1/2 flex flex-col justify-center">
-      <h2 className="text-2xl lg:text-3xl font-black text-gray-900 mb-4 dark:text-white">
+      <h2 className="text-2xl lg:text-3xl font-black p-3 mb-4">
         Footwear Collection for This Season
       </h2>
-      <p className="text-gray-600 font-medium mb-4 dark:text-gray-100">
+      <p className="text-gray-600 font-medium p-3 mb-4 dark:text-gray-100">
         Explore the ultimate footwear collection. From sleek, urban
         sneakers to elegant evening wear, find your perfect aesthetic
         with smart categories and seamless navigation crafted to elevate
         your daily style effortlessly....
       </p>
-      <div>
-        <Link href={PRODUCTS_ROUTE} className="bg-[#ff5500] hover:bg-[#e04b00] text-white font-bold text-xs py-3 px-6 rounded-full shadow-sm transition">
+      <div className="px-2">
+        <Link href={PRODUCTS_ROUTE} className="bg-primary text-white font-bold text-sm py-3 px-6 rounded-full shadow-sm transition cursor-pointer dark:bg-white dark:text-primary">
           View Product
         </Link>
       </div>
