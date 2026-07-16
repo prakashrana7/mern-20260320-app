@@ -16,7 +16,7 @@ const CartPage = () => {
    const totalPrice = useCartStore((state)=> state.totalPrice);
 
   return (
-    <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+    <section className="py-8 antialiased dark:bg-gray-800 md:py-16">
   <div className="mx-auto max-w-7xl px-4 2xl:px-0">
     <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Shopping Cart</h2>
     {products.length==0? (<div>Cart is empty!</div>):(
@@ -171,7 +171,7 @@ const CartPage = () => {
           <CheckoutButton products={products} totalPrice={ totalPrice + totalPrice * 0.03 + 100 }/>
           <div className="flex items-center justify-center gap-2">
             <span className="text-sm font-normal text-gray-500 dark:text-gray-400"> or </span>
-            <Link href={PRODUCTS_ROUTE} title className="inline-flex items-center gap-2 text-sm font-medium text-primary underline hover:no-underline ">
+            <Link href={PRODUCTS_ROUTE} title="Continue Shopping" className="inline-flex items-center gap-2 text-sm font-medium text-primary underline hover:no-underline ">
               Continue Shopping
               <FaArrowRight/>
             </Link>
@@ -181,7 +181,7 @@ const CartPage = () => {
           <form className="space-y-4">
             <div>
               <label htmlFor="voucher" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Do you have a voucher or gift card? </label>
-              <input type="text" id="voucher" className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder required />
+              <input type="text" id="voucher" className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500" placeholder="Enter voucher code" required />
             </div>
             <button type="button" className="flex w-full items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-primary">Apply Code</button>
           </form>

@@ -10,7 +10,7 @@ import collection from "@/assets/images/collection.jpg"
 
 const AboutPage = () => {
   return (
-     <section id="about" className="h-full py-12">
+     <section id="about" className="py-12">
       <h1 className="text-4xl text-center font-black">About Us</h1>
       <div className="flex flex-col lg:flex-row max-w-7xl mx-auto px-4 lg:px-6 p-6 lg:p-10 gap-8 items-center ">
         <div className="w-full lg:w-1/2 flex items-center justify-center border-gray-100 p-1 rounded-2xl shadow-xs relative">

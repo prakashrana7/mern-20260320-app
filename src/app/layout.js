@@ -16,8 +16,8 @@ export const metadata = {
 const RootLayout = ({children}) => {
   return (
     <html lang="en">
-      <body>
-          <MainLayout>
+      <body className="grid min-h-screen grid-rows-[1fr_auto]">
+          <MainLayout >
             <Header/> 
           {children}
           

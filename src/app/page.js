@@ -226,7 +226,6 @@ import ContactPage from "./contact/page";
       </div>
     </div>
   </div></section>
-
     <ContactPage/>
 </div>
 
