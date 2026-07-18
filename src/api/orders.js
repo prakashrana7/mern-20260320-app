@@ -1,11 +1,19 @@
 import api from "./api";
 
+export const getAllOrders = async () => {
+    return await api.get(`/api/orders`);
+};
+
 export const getOrdersById = async (id) => {
     return await api.get(`/api/orders/${id}`);
 };
 
 export const getOrdersByUser = async (status) => {
     return await api.get(`/api/orders/user?status=${status}`);
+};
+
+export const getOrdersByMerchant = async () => {
+    return await api.get(`/api/orders/merchant`);
 };
 
 export const createOrder = async (data)=>{
@@ -25,5 +33,9 @@ export const payViaCash = async (id)=>{
 };
 
 export const confirmOrder = async (id, status)=>{
-    return await api.put(`/api/orders/${id}/confirm`, {status:status});
+    return await api.put(`/api/orders/${id}/confirm`, { status:status });
+};
+
+export const updateOrderStatus = async (id, status)=>{
+    return await api.put(`/api/orders/${id}/status`, { status:status });
 };

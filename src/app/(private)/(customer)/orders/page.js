@@ -8,7 +8,7 @@ import Spinner from "@/components/Spinner";
 import { toast } from "react-toastify";
 import PayViaKhalti from "./_component/PayViaKhalti";
 import PayViaCash from "./_component/PayViaCash";
-import OrderStatus from "./_component/OrderStatus";
+import OrderStatus from "../../../../components/orders/OrderStatus";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ORDERS_ROUTE } from "@/constants/routes";
 

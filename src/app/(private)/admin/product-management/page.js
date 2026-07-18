@@ -5,10 +5,9 @@ import { FaPlus } from "react-icons/fa";
 
 const ProductManagementPage = () => {
   return (
-<section className="bg-gray-50 dark:bg-gray-900 py-3 sm:py-5">
-  <div className="px-4 mx-auto lg:px-12">
+<section className="py-3">
     <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">Product Management</h2>
-    <div className="relative overflow-hidden bg-white shadow-md dark:bg-gray-800 sm:rounded-lg">
+    <div className="relative overflow-hidden bg-white shadow-md dark:bg-gray-900 sm:rounded-lg">
       <div className="flex flex-col px-4 py-3 space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 lg:space-x-4">
         <div className="flex items-center flex-1 space-x-4">
           <h5>
@@ -65,9 +64,7 @@ const ProductManagementPage = () => {
         </ul>
       </nav>
     </div>
-  </div>
 </section>
-
   )
 }
 

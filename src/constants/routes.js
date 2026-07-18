@@ -1,3 +1,5 @@
+import { FaChartPie, FaShoppingBag, FaShoppingCart, FaUsers } from "react-icons/fa";
+
 export const HOME_ROUTE="/";
 export const ABOUT_ROUTE="/about";
 export const CONTACT_ROUTE="/contact";
@@ -9,8 +11,10 @@ export const CART_ROUTE="/cart";
 export const ORDERS_ROUTE="/orders";
 
 //Admin Routes
-
-export const PRODUCT_MANAGEMENT_ROUTE="/product-management";
+export const PRODUCT_MANAGEMENT_ROUTE="/admin/product-management";
+export const DASHBOARD_ROUTE="/admin/dashboard";
+export const ORDER_MANAGEMENT_ROUTE="/admin/order-management";
+export const USER_MANAGEMENT_ROUTE="/admin/user-management";
 
 export const navMenu=[
     {
@@ -34,4 +38,27 @@ export const navMenu=[
         route: CONTACT_ROUTE,
     },
 
+]
+
+export const adminMenu=[
+    {
+        label: "Dashboard",
+        route: DASHBOARD_ROUTE,
+        Icon: FaChartPie,
+    },
+    {
+        label: "Product Management",
+        route: PRODUCT_MANAGEMENT_ROUTE,
+        Icon: FaShoppingBag,
+    },
+     {
+        label: "Order Management",
+        route: ORDER_MANAGEMENT_ROUTE,
+        Icon: FaShoppingCart,
+    },
+     {
+        label: "User Management",
+        route: USER_MANAGEMENT_ROUTE,
+        Icon: FaUsers,
+    },
 ]
