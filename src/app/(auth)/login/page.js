@@ -2,7 +2,7 @@
 
 import SocialallLogins from '../_components/SocialallLogins'
 import Link from 'next/link'
-import { HOME_ROUTE, REGISTER_ROUTE } from '@/constants/routes'
+import { FORGOT_PASSWORD_ROUTE, HOME_ROUTE, REGISTER_ROUTE } from '@/constants/routes'
 import { useForm } from 'react-hook-form';
 import { login } from '@/api/auth';
 import PasswordInput from '@/components/PasswordInput';
@@ -62,7 +62,7 @@ const LoginPage = () => {
                 <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
               </div>
             </div>
-            <a href="#" className="text-sm font-medium text-primary hover:underline dark:text-primary-500">Forgot password?</a>
+            <Link href={FORGOT_PASSWORD_ROUTE} className="text-sm font-medium text-primary hover:underline dark:text-primary-500">Forgot password?</Link>
           </div>
           <button type="submit" className="relative w-full text-white bg-primary hover:bg-primary-dark focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 disabled:opacity-85"
           disabled={loading}>Sign in 
