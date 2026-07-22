@@ -27,7 +27,7 @@ const ProfileImage = () => {
       .then((response) => {
         setUser({ user: response.data });
 
-        toast.success("Updated successfully!");
+        toast.success("Profile Updated successfully!");
       })
       .catch((error) => {
         console.log(error);

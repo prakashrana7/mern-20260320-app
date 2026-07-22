@@ -26,7 +26,7 @@ const PayViaKhalti = ({orderId}) => {
     ><Image src={khaltiLogo} alt="khalti" 
     height={40} width={100} className="h-5 w-auto"/>
    {loading &&  <Spinner className="h-5! w-5!" />}</button>
-  )
-}
+  );
+};
 
-export default PayViaKhalti
+export default PayViaKhalti;

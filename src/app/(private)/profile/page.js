@@ -82,10 +82,10 @@ const ProfilePage = () => {
                   required {...register("province")}>
                   <option value="Bagmati">Bagmati</option>
                   <option value="Gandaki">Gandaki</option>
-                  <option value="Karnali">Karnali</option>
+                  <option value="Karnali">Madhesh</option>
                   <option value="Koshi">Koshi</option>
                   <option value="Lumbini">Lumbini</option>
-                  <option value="Madhesh">Madhesh</option>
+                  <option value="Madhesh">Karnali</option>
                   <option value="Sudur-Paschim">SudurPaschim</option>
                 </select>
               </div>

@@ -70,7 +70,7 @@ const LoginPage = () => {
             <Spinner className="absolute right-3 top-2 w-6! h-6!"/>)}
              </button>
           <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-            Don't have an account yet? {""}
+            Don&apos;t have an account yet? {""}
             <Link 
             href={REGISTER_ROUTE} 
             className="font-medium text-primary hover:underline">Sign up</Link>

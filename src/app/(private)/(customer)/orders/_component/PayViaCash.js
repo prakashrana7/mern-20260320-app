@@ -15,7 +15,7 @@ const PayViaCash = ({orderId}) => {
      function initPayment(){
     setLoading(true);
     payViaCash(orderId)
-    .then((res) => {
+    .then(() => {
       router.push(`${ORDERS_ROUTE}/confirmation/${orderId}?status=Completed`);
     })
     .catch((error) => {
