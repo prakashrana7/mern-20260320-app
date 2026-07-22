@@ -106,7 +106,7 @@ function applyFilters(){
      <div  className='py-2'> 
         <h4 className="text-sm mb-1">Brands:</h4>
        <div>
-        {brands.map((brand, index)=>(
+        {brands?.map((brand, index)=>(
              <div key={index} className="flex items-center mb-1">
             <input id={brand} type="checkbox" defaultValue onChange={()=>handleBrandsFilter(brand)} className="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft" />
             <label htmlFor={brand} className="select-none ms-2 text-sm font-medium text-heading">{brand}</label>

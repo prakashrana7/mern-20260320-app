@@ -99,45 +99,6 @@ const CartPage = () => {
                     </div>
                   </div>
                 </div>
-
-          <div className="product-card">
-                  <Image className="w-full h-40 object-contain" src={shoes} alt="featured" height={300} width={400} />
-                  <div className="bg-gray-100 dark:bg-gray-800 pt-3 px-4 pb-4">
-                    <span className="inline-flex items-center rounded-md bg-accent px-2 py-1 text-xs font-medium text-white inset-ring inset-ring-gray-400/20">Sneakers</span>
-                    <h4 className="font-semibold text-xl pt-1 pb-2">KTM Sneakers</h4>
-                    <p>Brand: <strong>Nike</strong></p>
-                    <p className="my-1 font-bold text-2xl text-primary">Rs. 8000</p>
-                    <div className="grid grid-cols-2 gap-4 items-center w-full mt-2">
-                    <button
-                       className="bg-gray-200 dark:bg-gray-800 py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300 border border-transparent dark:border-gray-700"
-                    >
-                      View
-                    </button>
-                    <button className="bg-primary py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease text-white">
-                      Add to Cart
-                    </button>
-                    </div>
-                  </div>
-                </div>
-          <div className="product-card">
-                  <Image className="w-full h-40 object-contain" src={shoes} alt="featured" height={300} width={400} />
-                  <div className="bg-gray-100 dark:bg-gray-800 pt-3 px-4 pb-4">
-                    <span className="inline-flex items-center rounded-md bg-accent px-2 py-1 text-xs font-medium text-white inset-ring inset-ring-gray-400/20">Sneakers</span>
-                    <h4 className="font-semibold text-xl pt-1 pb-2">KTM Sneakers</h4>
-                    <p>Brand: <strong>Nike</strong></p>
-                    <p className="my-1 font-bold text-2xl text-primary">Rs. 8000</p>
-                    <div className="grid grid-cols-2 gap-4 items-center w-full mt-2">
-                    <button
-                       className="bg-gray-200 dark:bg-gray-800 py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease hover:text-primary dark:text-gray-300 border border-transparent dark:border-gray-700"
-                    >
-                      View
-                    </button>
-                    <button className="bg-primary py-2 w-full text-center rounded-2xl text-sm font-medium transition duration-300 ease text-white">
-                      Add to Cart
-                    </button>
-                    </div>
-                  </div>
-                </div>
           </div>
         </div>
       </div>
