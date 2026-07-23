@@ -3,15 +3,12 @@
 import { getAllOrders, getOrdersByMerchant } from "@/api/orders";
 import OrderStatus from "@/components/orders/OrderStatus";
 import Spinner from "@/components/Spinner";
-import { ORDER_MANAGEMENT_ROUTE } from "@/constants/routes";
 import { ROLE_ADMIN } from "@/constants/userRoles";
 import useAuthStore from "@/stores/authStore";
 import { format } from "date-fns";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { FaCog, FaImage, FaTrash } from "react-icons/fa";
-import { FaPencil } from "react-icons/fa6";
+import { FaCog, FaImage } from "react-icons/fa";
 import { toast } from "react-toastify";
 import EditOrder from "./EditOrder";
 
@@ -21,20 +18,25 @@ const OrdersTable = () => {
 
     const {user}= useAuthStore.getState();
    
-    async function fetchOrders(){
+    useEffect(()=>{
+    const timer = setTimeout(()=>{
+      async function fetchOrders(){
     try{
-      const response = (user.roles.includes(ROLE_ADMIN))
+      const response = (user?.roles?.includes(ROLE_ADMIN))
       ? await getAllOrders() : await getOrdersByMerchant();
 
-    setOrders(response.data);
+    setOrders(response?.data || []);
     } catch (error) {
       console.log(error);
-    } finally {setLoading(false);}
+      toast.error("Failed to load orders.");
+    } finally {
+      setLoading(false);
+      }
     }
-
-    useEffect(()=>{
-      fetchOrders();
-    }, []);
+    fetchOrders();
+    }, 0);
+   return () => clearTimeout(timer);
+    }, [user?.roles]);
     
     if(loading)
     return (
@@ -60,7 +62,7 @@ const OrdersTable = () => {
             {
               orders.length == 0 ? (
               <tr>
-                <td colSpan={7} className="text-center py-4">No Orders.</td>
+                <td colSpan={8} className="text-center py-4">No Orders.</td>
               </tr>
               ):(
             orders?.map((order, index) => (
@@ -92,9 +94,9 @@ const OrdersTable = () => {
                 </div>
               </th>
               <td className="px-4 py-2">
-                <h3 className="text-gray-800 dark:text-gray-100">{order.user.name}</h3>
-                <p className="text-xs">{order.user.email}</p>
-                <p className="text-xs">{order.user.phone}</p>
+                <h3 className="text-gray-800 dark:text-gray-100">{order.user?.name}</h3>
+                <p className="text-xs">{order.user?.email}</p>
+                <p className="text-xs">{order.user?.phone}</p>
                 </td>
                 <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white">Rs. {order.totalPrice}</td>
                <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white"><OrderStatus status={order.status}/></td>

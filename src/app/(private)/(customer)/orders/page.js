@@ -13,7 +13,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { ORDERS_ROUTE } from "@/constants/routes";
 
 
-const orderPage = () => {
+const OrderPage = () => {
   const [orders, setOrders]= useState([]);
   const [loading, setLoading]= useState(true);
 
@@ -113,4 +113,4 @@ const orderPage = () => {
   );
 };
 
-export default orderPage;
+export default OrderPage;

@@ -14,18 +14,23 @@ const UsersTable = () => {
     const [users, setUsers]= useState([]);
     const [loading, setLoading] = useState(true);
    
-    async function fetchUsers(){
-    try{
-      const response = await getAllUsers(); 
-
-    setUsers(response.data);
-    } catch (error) {
-      console.log(error);
-    } finally {setLoading(false);}
-    }
-
     useEffect(()=>{
-      fetchUsers();
+        const timer = setTimeout(() => {
+        async function fetchUsers() {
+          try {
+            const response = await getAllUsers(); 
+            setUsers(response?.data || []);
+          } catch (error) {
+            console.log(error);
+          } finally {
+            setLoading(false);
+          }
+        }
+
+        fetchUsers();
+      }, 0);
+
+    return () => clearTimeout(timer);
     }, []);
     
     if(loading)
@@ -52,7 +57,7 @@ const UsersTable = () => {
             {
               users.length == 0 ? (
               <tr>
-                <td colSpan={7} className="text-center py-4">No Users.</td>
+                <td colSpan={8} className="text-center py-4">No Users.</td>
               </tr>
               ):(
             users?.map((user, index) => (
@@ -60,16 +65,16 @@ const UsersTable = () => {
                 <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white">{index+1}</td>
              
               <th scope="row" className="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-              {user.name}
+              {user?.name || "N/A"}
               </th>
-              <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white">{user.email}</td>
-              <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white">{user.phone}</td>
-              <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white">{user.address.city},{user.address.province}</td>
-              <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white">{user.roles.map((role)=>(
+              <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white">{user?.email || "N/A"}</td>
+              <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white">{user?.phone || "N/A"}</td>
+              <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white">{user?.address ? `${user.address.city}, ${user.address.province}` : "N/A"}</td>
+              <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white">{user?.roles?.map((role)=>(
                 <span key={role} className="mr-2 bg-primary/10 text-primary text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">{role}</span>   
               ))}
              </td>
-              <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{format(user.createdAt, "dd MMM, yyyy")}</td>
+              <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">{user?.createdAt ? format(new Date(user.createdAt), "dd MMM, yyyy") : "N/A"}</td>
               <td className="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                 <EditUser userId={user._id} />
               </td>
