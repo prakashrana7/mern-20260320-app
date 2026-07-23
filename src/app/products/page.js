@@ -1,5 +1,5 @@
 import { getBrands, getCategories, getProducts } from "@/api/product";
-import ProductCard from "./_components/Card";
+import ProductCard from "@/app/products/_components/Card";
 import Filters from "./_components/Filters";
 
 export const metadata = {

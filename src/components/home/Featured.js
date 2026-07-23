@@ -1,5 +1,5 @@
 import { getProducts } from "@/api/product";
-import ProductCard from "@/app/products/_components/Card";
+import ProductCard from "../../app/products/_components/Card";
 
 const Featured = async () => {
   const products = await getProducts({ category: "Sneakers"});

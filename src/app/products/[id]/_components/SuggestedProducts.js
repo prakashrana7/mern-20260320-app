@@ -1,5 +1,5 @@
 import { getProducts } from "@/api/product";
-import ProductCard from "../../_components/Card";
+import ProductCard from "@/app/products/_components/Card";
 
 const SuggestedProducts = async ({ category }) => {
   const products = await getProducts({ category, limit: 4 });
