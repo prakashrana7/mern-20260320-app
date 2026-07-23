@@ -2,8 +2,6 @@ import { getBrands, getCategories, getProducts } from "@/api/product";
 import ProductCard from "@/app/products/_components/Card";
 import Filters from "./_components/Filters";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = {
   title: "Products",
 };
