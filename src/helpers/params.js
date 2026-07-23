@@ -5,5 +5,5 @@ export function formatParams(searchParams){
     const [key, value] = param;
     if (value) query += `${key}=${value}&`;
   });
-  return query;
+  return query.slice(0, query.length - 1);
 }
