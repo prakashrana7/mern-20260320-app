@@ -5,6 +5,8 @@ import Contact from "@/components/home/Contact";
 import BestSeller from "@/components/home/BestSeller";
 import Featured from "@/components/home/Featured";
 
+export const dynamic = "force-dynamic";
+
   const Home = () => {
   return (
      <main>
