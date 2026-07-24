@@ -18,11 +18,7 @@ const PrivateLayout = ({children}) => {
     },[]);
 
     if (!isAuthenticated) return;
-  return (
-    <>
-      {children}
-    </>
-  )
-}
+  return <>{children}</>
+};
 
-export default PrivateLayout
+export default PrivateLayout;

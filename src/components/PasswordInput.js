@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const PasswordInput = (props) => {
@@ -15,7 +15,7 @@ const PasswordInput = (props) => {
       />          
       <button className="absolute top-1 right-1 p-2" type="button" onClick={()=>setShowPassword(!showPassword)}>{showPassword?<FaEye/>:<FaEyeSlash/>}</button>
     </div>
-  )
-}
+  );
+};
 
-export default PasswordInput
+export default PasswordInput;

@@ -9,7 +9,7 @@ export const getProducts = async (searchParams) => {
     limit: searchParams?.limit || 100,
   });
   
-  const response = await axios.get(`${config.apiUrl}/api/products?&${query}`);
+  const response = await axios.get(`${config.apiUrl}/api/products?${query}`);
 
   return response.data;
 };
@@ -43,3 +43,9 @@ export const getBrands = async ()=>{
   
    return response.data;
   };
+
+  export const getTotalCount = async () => {
+  const response = await axios.get(`${config.apiUrl}/api/products/count`);
+
+  return response.data;
+};

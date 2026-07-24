@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const ReviewOfProductPage = async ({params}) => {
     const{id, reviewId} = await params;
@@ -6,7 +6,7 @@ const ReviewOfProductPage = async ({params}) => {
     <div>
       Product id: {id} and review id: {reviewId}
     </div>
-  )
-}
+  );
+};
 
-export default ReviewOfProductPage
+export default ReviewOfProductPage;

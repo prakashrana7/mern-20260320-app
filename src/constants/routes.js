@@ -38,7 +38,7 @@ export const navMenu=[
         route: CONTACT_ROUTE,
     },
 
-]
+];
 
 export const adminMenu=[
     {
@@ -62,4 +62,4 @@ export const adminMenu=[
         Icon: FaUsers,
         allowedRole: ROLE_ADMIN,
     },
-]
+];

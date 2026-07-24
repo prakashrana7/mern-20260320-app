@@ -1,5 +1,5 @@
-import Image from "next/image"
-import shoeImage from "@/assets/images/shoes.png"
+import Image from "next/image";
+import shoeImage from "@/assets/images/shoes.png";
 
 const ProductBanner = () => {
   return (
@@ -24,4 +24,4 @@ const ProductBanner = () => {
 };
 
 
-export default ProductBanner
+export default ProductBanner;

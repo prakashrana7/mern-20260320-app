@@ -1,6 +1,5 @@
-import { FaArrowLeft } from "react-icons/fa"
-import ProductForm from "../_components/Form"
-import BackButton from "@/components/BackButton"
+import ProductForm from "../_components/Form";
+import BackButton from "@/components/BackButton";
 
 const AddProductPage = () => {
   return (
@@ -11,7 +10,7 @@ const AddProductPage = () => {
       <ProductForm/>
     </div>
     </section>
-  )
-}
+  );
+};
 
-export default AddProductPage
+export default AddProductPage;

@@ -9,7 +9,7 @@ const OrderManagementPage = () => {
       <OrdersTable/>
     </div>
 </section>
-  )
-}
+  );
+};
 
 export default OrderManagementPage;

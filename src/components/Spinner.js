@@ -9,7 +9,7 @@ const Spinner = ({className}) => {
   <span className="sr-only">Loading...</span>
 </div>
 
-  )
-}
+  );
+};
 
 export default Spinner;

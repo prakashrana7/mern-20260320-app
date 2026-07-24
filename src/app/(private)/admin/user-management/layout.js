@@ -16,11 +16,7 @@ const UserManagementLayout = ({children}) => {
         } 
         if(!user.roles.includes(ROLE_ADMIN)) return router.replace(HOME_ROUTE);
       }, []);
-  return (
-    <div>
-     {children}
-    </div>
-  )
-}
+  return <div>{children}</div>
+};
 
-export default UserManagementLayout
+export default UserManagementLayout;

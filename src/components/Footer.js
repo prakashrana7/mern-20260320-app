@@ -11,7 +11,7 @@ const Footer = () => {
     ©2026 StepStyle. All rights reserved.
   </footer>
     </div>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

@@ -1,15 +1,15 @@
 "use client";
 
-import { useState } from 'react';
-import { CART_ROUTE, HOME_ROUTE, LOGIN_ROUTE, navMenu } from '@/constants/routes';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import useAuthStore from '@/stores/authStore';
-import usePreferenceStore from '@/stores/preferenceStore';
-import { FaMoon, FaSun, FaBars, FaTimes } from 'react-icons/fa';
-import useCartStore from '@/stores/cartStore';
-import Logo from './Logo';
-import Account from './Account';
+import { useState } from "react";
+import { CART_ROUTE, HOME_ROUTE, LOGIN_ROUTE, navMenu } from "@/constants/routes";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import useAuthStore from "@/stores/authStore";
+import usePreferenceStore from "@/stores/preferenceStore";
+import { FaMoon, FaSun, FaBars, FaTimes } from "react-icons/fa";
+import useCartStore from "@/stores/cartStore";
+import Logo from "./Logo";
+import Account from "./Account";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -27,7 +27,7 @@ const Header = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
 
   return (
-  <header className="  py-4 shadow-md bg-white dark:bg-gray-950 sticky top-0 z-10">
+  <header className="py-4 shadow-md bg-white dark:bg-gray-950 sticky top-0 z-10">
   <div className="container max-w-7xl mx-auto px-4">
     <div className="flex items-center justify-between gap-4">
       <Logo/>

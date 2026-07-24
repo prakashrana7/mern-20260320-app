@@ -3,8 +3,7 @@
 import { confirmOrder } from "@/api/orders";
 import Spinner from "@/components/Spinner";
 import { ORDERS_ROUTE } from "@/constants/routes";
-import { useParams, useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 

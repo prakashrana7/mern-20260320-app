@@ -27,9 +27,8 @@ const SocialallLogins = () => {
            Login with Apple 
            </button>
     </div>
-
     </section>
-  )
-}
+  );
+};
 
-export default SocialallLogins
+export default SocialallLogins;

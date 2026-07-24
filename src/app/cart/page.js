@@ -151,9 +151,8 @@ const CartPage = () => {
     </div>
     )}
   </div>
-</section>
-
-  )
+ </section>
+  );
 };
 
 export default CartPage;

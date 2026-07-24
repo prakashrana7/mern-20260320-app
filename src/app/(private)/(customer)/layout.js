@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { HOME_ROUTE, LOGIN_ROUTE } from "@/constants/routes";
 import { ROLE_CUSTOMER } from "@/constants/userRoles";
@@ -22,11 +22,7 @@ const CustomerLayout = ({children}) => {
     },[]);
 
     if (!isAuthenticated) return;
-  return (
-    <>
-      {children}
-    </>
-  )
-}
+  return <>{children}</>
+};
 
-export default CustomerLayout
+export default CustomerLayout;

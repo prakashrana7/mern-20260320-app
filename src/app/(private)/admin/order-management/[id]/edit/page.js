@@ -80,4 +80,4 @@ const UpdateOrderPage = () => {
   );
 };
 
-export default UpdateOrderPage
+export default UpdateOrderPage;

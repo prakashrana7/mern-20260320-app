@@ -1,5 +1,6 @@
+"use client";
+
 import usePreferenceStore from '@/stores/preferenceStore'
-import React from 'react'
 import { FaMoon, FaSun } from 'react-icons/fa';
 
 const ThemeSwitcher = () => {
@@ -21,7 +22,7 @@ const ThemeSwitcher = () => {
             )}
             
           </button>
-  )
-}
+  );
+};
 
-export default ThemeSwitcher
+export default ThemeSwitcher;

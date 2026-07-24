@@ -9,7 +9,6 @@ import { format } from "date-fns";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaCog, FaImage } from "react-icons/fa";
-import { toast } from "react-toastify";
 import EditOrder from "./EditOrder";
 
 const OrdersTable = () => {
@@ -18,25 +17,22 @@ const OrdersTable = () => {
 
     const {user}= useAuthStore.getState();
    
-    useEffect(()=>{
-    const timer = setTimeout(()=>{
-      async function fetchOrders(){
+   async function fetchOrders(){
     try{
-      const response = (user?.roles?.includes(ROLE_ADMIN))
+      const response = (user.roles.includes(ROLE_ADMIN))
       ? await getAllOrders() : await getOrdersByMerchant();
 
-    setOrders(response?.data || []);
+    setOrders(response.data);
     } catch (error) {
       console.log(error);
-      toast.error("Failed to load orders.");
     } finally {
       setLoading(false);
       }
     }
-    fetchOrders();
-    }, 0);
-   return () => clearTimeout(timer);
-    }, [user?.roles]);
+    
+    useEffect(()=>{
+      fetchOrders();
+    }, []);
     
     if(loading)
     return (
@@ -59,8 +55,7 @@ const OrdersTable = () => {
             </tr>
           </thead>
           <tbody>
-            {
-              orders.length == 0 ? (
+            {orders?.length == 0 ? (
               <tr>
                 <td colSpan={8} className="text-center py-4">No Orders.</td>
               </tr>
@@ -94,9 +89,9 @@ const OrdersTable = () => {
                 </div>
               </th>
               <td className="px-4 py-2">
-                <h3 className="text-gray-800 dark:text-gray-100">{order.user?.name}</h3>
-                <p className="text-xs">{order.user?.email}</p>
-                <p className="text-xs">{order.user?.phone}</p>
+                <h3 className="text-gray-800 dark:text-gray-100">{order.user.name}</h3>
+                <p className="text-xs">{order.user.email}</p>
+                <p className="text-xs">{order.user.phone}</p>
                 </td>
                 <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white">Rs. {order.totalPrice}</td>
                <td className="px-4 py-2 font-medium text-gray-500 whitespace-nowrap dark:text-white"><OrderStatus status={order.status}/></td>
@@ -109,7 +104,7 @@ const OrdersTable = () => {
           </tbody>
         </table>
       </div>
-  )
-}
+  );
+};
 
-export default OrdersTable
+export default OrdersTable;

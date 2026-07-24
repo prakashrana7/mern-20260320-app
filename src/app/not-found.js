@@ -4,7 +4,7 @@ const NotFoundPage = () => {
         <h1 className="text-red-500 font-semibold text-3xl">404</h1>
       <h3>Page Not Found</h3>
     </div>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;

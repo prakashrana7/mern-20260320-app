@@ -50,7 +50,7 @@ const OrderTable = ({order}) => {
     </tbody>
   </table>
    </div>
-  )
-}
+  );
+};
 
-export default OrderTable 
+export default OrderTable ;

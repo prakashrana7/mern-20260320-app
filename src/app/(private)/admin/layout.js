@@ -31,7 +31,7 @@ const MerchantLayout = ({children}) => {
     <Sidebar/>
     <div className="p-6 sm:ml-64 min-h-screen dark:bg-gray-800">{children}</div>
     </>
-  )
-}
+  );
+};
 
-export default MerchantLayout
+export default MerchantLayout;

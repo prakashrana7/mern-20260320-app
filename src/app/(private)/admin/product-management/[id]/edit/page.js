@@ -1,5 +1,5 @@
 import { getProductById } from "@/api/product";
-import ProductForm from "../../_components/Form"
+import ProductForm from "../../_components/Form";
 import BackButton from "@/components/BackButton";
 
 const EditProductPage = async ({params}) => {
@@ -14,7 +14,7 @@ const EditProductPage = async ({params}) => {
       <ProductForm product={product} isEditing={true}/>
     </div>
     </section>
-  )
-}
+  );
+};
 
-export default EditProductPage 
+export default EditProductPage; 

@@ -1,6 +1,5 @@
-import { REGISTER_ROUTE } from '@/constants/routes'
-import Link from 'next/link'
-import React from 'react'
+import { REGISTER_ROUTE } from "@/constants/routes";
+import Link from "next/link";
 
 const CallToAction = () => {
   return (
@@ -19,7 +18,7 @@ const CallToAction = () => {
             </div>
           </div>
         </section>
-  )
-}
+  );
+};
 
-export default CallToAction
+export default CallToAction;

@@ -1,4 +1,4 @@
-import UsersTable from "./_components/Table"
+import UsersTable from "./_components/Table";
 
 const UserManagementPage = () => {
   return (
@@ -8,7 +8,7 @@ const UserManagementPage = () => {
           <UsersTable/>
         </div>
     </section>
-  )
-}
+  );
+};
 
-export default UserManagementPage
+export default UserManagementPage;

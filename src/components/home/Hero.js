@@ -1,7 +1,7 @@
-import { ABOUT_ROUTE, PRODUCTS_ROUTE } from '@/constants/routes'
-import Image from 'next/image'
-import banner from "@/assets/images/banner.jpg"
-import Link from 'next/link'
+import { ABOUT_ROUTE, PRODUCTS_ROUTE } from "@/constants/routes";
+import Image from "next/image";
+import banner from "@/assets/images/banner.jpg";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -30,7 +30,7 @@ const Hero = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

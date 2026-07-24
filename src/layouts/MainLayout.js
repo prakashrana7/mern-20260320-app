@@ -7,7 +7,7 @@ const MainLayout = ({children}) => {
 
   return (
     <div className={`${theme} dark:bg-gray-800 dark:text-white`}>{children}</div>
-  )
-}
+  );
+};
 
-export default MainLayout
+export default MainLayout;

@@ -13,7 +13,7 @@ const EditOrder = ({orderId}) => {
     <div className="flex gap-2">
     <Link href={`${ORDER_MANAGEMENT_ROUTE}/${orderId}/edit`} ><FaPencil className="text-blue-600"/></Link>
     </div>
-  )
-}
+  );
+};
 
-export default EditOrder
+export default EditOrder;

@@ -146,7 +146,7 @@ const ProductForm = ({product, isEditing=false})=>{
         {loading && <Spinner className="h-5! w-5!"/>}
       </button>
     </form>
-  )
-}
+  );
+};
 
-export default ProductForm
+export default ProductForm;

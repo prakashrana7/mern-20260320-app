@@ -1,5 +1,5 @@
-import { ORDER_CANCELLED, ORDER_CONFIRMED, ORDER_DELIVERED, ORDER_SHIPPED } from '@/constants/orderStatus'
-import React from 'react'
+import { ORDER_CANCELLED, ORDER_CONFIRMED, ORDER_DELIVERED, ORDER_SHIPPED } from "@/constants/orderStatus";
+import React from "react";
 
 const OrderStatus = ({status}) => {
     if(status == ORDER_CANCELLED){

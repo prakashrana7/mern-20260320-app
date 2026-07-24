@@ -6,7 +6,7 @@ import { useState } from "react";
 
     const DEFAULT_SORT = JSON.stringify({createdAt: -1});
     const DEFAULT_MIN_PRICE = 0;
-    const DEFAULT_MAX_PRICE = 100000;
+    const DEFAULT_MAX_PRICE = 10000000;
     const DEFAULT_CATEGORY = "";
     const DEFAULT_BRANDS = [];
 
