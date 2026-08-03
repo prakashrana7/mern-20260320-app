@@ -11,7 +11,7 @@ import Spinner from '@/components/Spinner'
 import { useRouter } from 'next/navigation'
 
 const RegisterPage = () => {
-   const {register, handleSubmit} = useForm();
+   const {register, handleSubmit, formState: { errors } } = useForm();
 
     const {registerUser}= useAuthStore.getState();
      const [loading, setLoading]= useState(false);
@@ -53,16 +53,57 @@ const RegisterPage = () => {
         </h1>
         <form onSubmit={handleSubmit(submitForm)} className="space-y-4 md:space-y-6" action="#">
           <div>
-            <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
-            <input type="text" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Prakash Rana" required {...register("name")} />
+            <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name<span className="text-red-600 font-extrabold">*</span></label>
+            <input type="text" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Prakash Rana" required {...register("name", {
+                  required: "User name is required.",
+                  minLength: {
+                  value: 3,
+                  message: "User name must be at least 3 characters.",
+                  },
+                  maxLength: {
+                  value: 50,
+                  message: "User name cannot exceed 50 characters.",
+                  },
+                })} />
+                 {errors.name && (
+              <p className="text-xs text-red-600 mt-1 block">
+              {errors.name.message}
+              </p>
+              )}
           </div>
           <div>
-            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your phone</label>
-            <input type="tel" id="phone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="98********" required {...register("phone")} />
+            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Phone Number<span className="text-red-600 font-extrabold">*</span></label>
+            <input type="tel" id="phone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="98********" required {...register("phone", {
+                  required: "Phone number is required.",
+                  pattern: {
+                  value: /^\d{10}$/,
+                  message: "Phone number must be exactly 10 digits and contain only numbers."
+                    }
+                  })}/>
+                  {errors?.phone && (
+                  <span className="text-xs text-red-600 mt-1 block">
+                  {errors.phone.message}
+                  </span>
+                    )}
           </div>
            <div>
-            <label htmlFor="address" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
-            <input type="text" id="city" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Kanchanpur" required {...register("city")} />
+            <label htmlFor="address" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address<span className="text-red-600 font-extrabold">*</span></label>
+            <input type="text" id="city" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Kanchanpur" required {...register("city", {
+                  required: "Local Address is required.",
+                  minLength: {
+                  value: 3,
+                  message: "Local Address must be at least 3 characters.",
+                  },
+                  maxLength: {
+                  value: 150,
+                  message: "Local Address cannot exceed 150 characters.",
+                  },
+                })}/>
+                 {errors.city && (
+              <p className="text-xs text-red-600 mt-1 block">
+              {errors.city.message}
+              </p>
+              )}
            <select 
             id="province" className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required {...register("province")}
           ><option value="Bagmati">Bagmati</option>
@@ -75,12 +116,38 @@ const RegisterPage = () => {
            </select>
           </div>
           <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-            <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@gmail.com" required {...register("email")} />
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email<span className="text-red-600 font-extrabold">*</span></label>
+            <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@gmail.com" required {...register("email", {
+            required: "Email is required.", 
+            pattern: { value: /^[a-z0-9._%+-]+@(gmail|yahoo|outlook)\.com$/i, 
+            message: "Please enter a valid Gmail, Yahoo, or Outlook email address.",
+            },
+          })}
+          />
+        {errors.email && (
+        <p className="text-xs text-red-600 mt-1 block">
+        {errors.email.message}
+        </p>
+        )}
           </div>
           <div>
-            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-            <PasswordInput id="password" {...register("password")} />
+            <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password<span className="text-red-600 font-extrabold">*</span></label>
+            <PasswordInput id="password" {...register("password", {
+            required: "Password is required.",
+            minLength: {
+            value: 6,
+            message: "Password must be at least 6 characters.",
+            },
+            pattern: {
+            value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/,
+            message:"Password must contain uppercase, lowercase, number, and special character.",
+            },
+          })}/>
+          {errors.password && (
+          <p className="text-xs text-red-600 mt-1 block">
+          {errors.password.message}
+          </p>
+          )}
           </div>
           <div className="flex items-start">
             <div className="flex items-center h-5">

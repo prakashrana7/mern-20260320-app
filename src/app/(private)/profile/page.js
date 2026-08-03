@@ -13,7 +13,7 @@ const ProfilePage = () => {
 
   const { setUser } = useAuthStore.getState();
 
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, formState: { errors } } = useForm({
     values: {
       ...user,
       city: user?.address.city,
@@ -60,24 +60,66 @@ const ProfilePage = () => {
             </h1>
             <form onSubmit={handleSubmit(submitForm)} className="space-y-4 md:space-y-6" action="#">
               <div>
-                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your name</label>
+                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name<span className="text-red-600 font-extrabold">*</span></label>
                 <input type="text" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Prakash Rana" required {...register("name")}/>
+                  placeholder="Prakash Rana" required {...register("name", {
+                  required: "User name is required.",
+                  minLength: {
+                  value: 3,
+                  message: "User name must be at least 3 characters.",
+                  },
+                  maxLength: {
+                  value: 50,
+                  message: "User name cannot exceed 50 characters.",
+                  },
+                })}/>
+               {errors.name && (
+              <p className="text-xs text-red-600 mt-1 block">
+              {errors.name.message}
+              </p>
+              )}
               </div>
               <div>
-                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" >Your email</label>
+                <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" >Your Email</label>
                 <input type="email" id="email" className="disabled:bg-gray-100 dark:disabled:bg-gray-600 disabled:text-gray-400 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="name@gmail.com" required disabled {...register("email")}/>
               </div>
               <div>
-                <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
+                <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number<span className="text-red-600 font-extrabold">*</span></label>
                 <input type="tel" id="phone" placeholder="98********" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required {...register("phone")}/>
+                  required {...register("phone", {
+                  required: "Phone number is required.",
+                  pattern: {
+                  value: /^\d{10}$/,
+                  message: "Phone number must be exactly 10 digits and contain only numbers."
+                    }
+                  })}/>
+                  {errors?.phone && (
+                  <span className="text-xs text-red-600 mt-1 block">
+                  {errors.phone.message}
+                  </span>
+                    )}
               </div>
               <div>
-                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address</label>
+                <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address<span className="text-red-600 font-extrabold">*</span></label>
                 <input type="text" id="city" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Kanchanpur" required {...register("city")}/>
+                  placeholder="Kanchanpur" required {...register("city", {
+                  required: "Local Address is required.",
+                  minLength: {
+                  value: 3,
+                  message: "Local Address must be at least 3 characters.",
+                  },
+                  maxLength: {
+                  value: 150,
+                  message: "Local Address cannot exceed 150 characters.",
+                  },
+                  
+                })}/>
+                 {errors.city && (
+              <p className="text-xs text-red-600 mt-1 block">
+              {errors.city.message}
+              </p>
+              )}
                 <select id="province" className="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required {...register("province")}>
                   <option value="Bagmati">Bagmati</option>
