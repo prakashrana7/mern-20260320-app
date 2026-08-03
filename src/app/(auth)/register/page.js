@@ -72,7 +72,7 @@ const RegisterPage = () => {
               )}
           </div>
           <div>
-            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Phone Number<span className="text-red-600 font-extrabold">*</span></label>
+            <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number<span className="text-red-600 font-extrabold">*</span></label>
             <input type="tel" id="phone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="98********" required {...register("phone", {
                   required: "Phone number is required.",
                   pattern: {
@@ -116,7 +116,7 @@ const RegisterPage = () => {
            </select>
           </div>
           <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email<span className="text-red-600 font-extrabold">*</span></label>
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email<span className="text-red-600 font-extrabold">*</span></label>
             <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@gmail.com" required {...register("email", {
             required: "Email is required.", 
             pattern: { value: /^[a-z0-9._%+-]+@(gmail|yahoo|outlook)\.com$/i, 
