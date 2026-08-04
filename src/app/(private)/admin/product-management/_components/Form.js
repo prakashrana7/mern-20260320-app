@@ -76,7 +76,7 @@ const ProductForm = ({product, isEditing=false})=>{
         })
         .catch((error)=> {
             console.log(error);
-            toast.error(error.response?.data || "An error occured.");
+            toast.error(error.response?.data || "A server error occurred. Please try again.");
         })
         .finally(()=>setLoading(false));
     }
