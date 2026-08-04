@@ -77,7 +77,7 @@ const CartPage = () => {
           ))
         }
         </div>
-        <div className="hidden xl:mt-8 xl:block">
+        {/*<div className="hidden xl:mt-8 xl:block">
           <h3 className="text-2xl font-semibold text-gray-900 dark:text-white">People also bought</h3>
           <div className="mt-6 grid grid-cols-3 gap-4 sm:mt-8">
           <div className="product-card">
@@ -100,7 +100,7 @@ const CartPage = () => {
                   </div>
                 </div>
           </div>
-        </div>
+        </div>*/}
       </div>
       <div className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 lg:mt-0 lg:w-full">
         <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
@@ -138,7 +138,7 @@ const CartPage = () => {
             </Link>
           </div>
         </div>
-        <div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
+        {/*<div className="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
           <form className="space-y-4">
             <div>
               <label htmlFor="voucher" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Do you have a voucher or gift card? </label>
@@ -146,7 +146,7 @@ const CartPage = () => {
             </div>
             <button type="button" className="flex w-full items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-primary">Apply Code</button>
           </form>
-        </div>
+        </div>*/}
       </div>
     </div>
     )}
