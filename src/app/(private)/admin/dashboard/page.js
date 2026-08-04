@@ -33,16 +33,28 @@ const DashboardPage = () => {
 
   async function fetchDashboardData() {
     try {
-      await getAllOrders().then((response) => setOrders(response.data));
-      await getAllUsers().then((response) => setUsers(response.data));
-      await getProducts().then((data) => setProducts(data));
+      const [ordersRes, usersRes, productsRes] = await Promise.all([
+      getAllOrders(),
+      getAllUsers(),
+      getProducts(),
+      ]);
+
+      setOrders(ordersRes?.data || []);
+      setUsers(usersRes?.data || []);
+      setProducts(productsRes?.data || productsRes || []); 
     } catch (error) {
-      console.log(error);
+      console.log("Dashboard fetching error:", error);
+    }finally{
+      setLoading(false);
     }
-    setLoading(false);
   }
 
-  useEffect(() => fetchDashboardData, []);
+  useEffect(() => { 
+    const loadData = async () => {
+    await fetchDashboardData();
+   };
+   loadData();
+  }, []);
 
   if (loading)
     return (

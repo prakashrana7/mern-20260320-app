@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
-  const {register, handleSubmit} = useForm();
+  const {register, handleSubmit, formState: { errors }} = useForm();
   const {loginUser}= useAuthStore.getState();
   const [loading, setLoading]= useState (false);
 
@@ -46,8 +46,19 @@ const LoginPage = () => {
         <SocialallLogins/>
         <form onSubmit={handleSubmit(submitForm)} className="space-y-4 md:space-y-6" action="#">
           <div>
-            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-            <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@gmail.com" required {...register("email")}/>
+            <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Email</label>
+            <input type="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@gmail.com" required {...register("email", {
+            required: "Email address can't be empty.", 
+            pattern: { value: /^[a-z0-9._%+-]+@(gmail|yahoo|outlook)\.com$/i, 
+            message: "Please enter a valid Email address.",
+            },
+          })}
+          />
+        {errors.email && (
+        <p className="text-xs text-red-600 mt-1 block">
+        {errors.email.message}
+        </p>
+        )}
           </div>
           <div>
             <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
