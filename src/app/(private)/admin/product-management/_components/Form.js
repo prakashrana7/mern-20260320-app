@@ -48,13 +48,13 @@ const ProductForm = ({product, isEditing=false})=>{
 
     if (!isEditing && totalImages === 0) {
         setImageError("At least 1 product image is required.");
-        toast.error("Please upload at least 1 image.");
+        toast.error("Oops! Please upload at least 1 image.");
         return;
     }
 
     if (totalImages > 4) {
-        setImageError("A maximum of 4 images is allowed.");
-        toast.error("You cannot upload more than 4 images.");
+        setImageError("You can upload up to 4 images per product.");
+        toast.error("Oops! Please select 4 images or fewer.");
         return;
     }
         setLoading(true);
