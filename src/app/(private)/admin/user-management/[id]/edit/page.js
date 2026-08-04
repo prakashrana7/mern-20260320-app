@@ -66,7 +66,7 @@ const UpdateUserPage = () => {
           <input type="checkbox" className="mr-2" disabled defaultChecked={roles.includes(ROLE_ADMIN)}/>
           ADMIN
         </label>
-        <button className="inline-flex gap-2 items-center px-10 py-2.5 text-sm font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:ring-primary/20 dark:focus:ring-primary hover:bg-primary/90">
+        <button className="inline-flex gap-2 items-center px-10 py-2.5 text-sm font-medium text-center text-white bg-primary rounded-lg focus:ring-4 focus:ring-primary/20 dark:focus:ring-primary hover:bg-primary/90 cursor-pointer">
           Update
         </button>
       </form>
