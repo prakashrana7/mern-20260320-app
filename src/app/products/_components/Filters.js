@@ -57,7 +57,13 @@ function applyFilters(){
     <div className="self-start sticky top-20 hidden md:block shadow-md rounded-2xl py-5 px-4">
      <div className='py-2'> 
         <h4 className="font-semibold">Search:</h4>
-       <input type="text" name="name" value={search} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 cursor-pointer" placeholder="Search Products by Names..." onChange={(event) => setSearch(event.target.value)} />
+       <input type="text" name="name" value={search} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 cursor-pointer"
+        placeholder="Search Products by Names..." 
+        onChange={(event) => {
+        const value = event.target.value; 
+        setSearch(value.trim() === "" ? "" : value);
+        }} 
+        />
         </div>
 
 <h3 className='font-semibold mt-4'>Product Filters</h3>
