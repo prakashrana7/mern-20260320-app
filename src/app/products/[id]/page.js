@@ -46,7 +46,11 @@ const ProductDetailsPage = async ({ params }) => {
   return (
     <div>
       <div className="grid grid-cols-1 gap-5 lg:gap-24 md:grid-cols-2 text-black dark:text-white">
-        <ProductImage imageUrls={product.imageUrls} />
+        <ProductImage 
+        imageUrls={product.imageUrls}  
+        productName={product.name} 
+        productCategory={product.category} 
+        />
         <div className="py-12">
           <span className="bg-blue-500/10 border border-blue-500 text-blue-500 text-xs font-medium px-1.5 py-0.5 rounded-full">
             {product.category}
