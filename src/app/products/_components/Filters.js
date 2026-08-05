@@ -4,7 +4,7 @@ import { PRODUCTS_ROUTE } from "@/constants/routes";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-    const DEFAULT_SORT = JSON.stringify({createdAt: -1});
+    const DEFAULT_SORT = "";
     const DEFAULT_MIN_PRICE = "";
     const DEFAULT_MAX_PRICE = "";
     const DEFAULT_CATEGORY = "";
@@ -38,17 +38,17 @@ const Filters = ({brands, categories}) => {
 
     const params = new URLSearchParams();
 
-    if (sort !== DEFAULT_SORT) params.set("sort", sort);
-    if (minPrice) params.set("min", minPrice);
-    if (maxPrice) params.set("max", maxPrice);
-    if (categoryFilter) params.set("category", categoryFilter);
+    if (sort !== "") params.set("sort", sort);
+    if (minPrice !== "") params.set("min", minPrice);
+    if (maxPrice !== "") params.set("max", maxPrice);
+    if (categoryFilter !== "") params.set("category", categoryFilter);
     if (brandsFilter.length > 0) params.set("brands", brandsFilter.join(","));
-    if (search) params.set("name", search);
+    if (search.trim() !== "") params.set("name", search.trim());
 
     const queryString = params.toString();
-    const finalUrl = queryString ? `?${queryString}` : PRODUCTS_ROUTE;
+    const finalUrl = queryString ? `${PRODUCTS_ROUTE}?${queryString}` : PRODUCTS_ROUTE;
 
-    router.push(finalUrl, { scroll: false });
+    router.replace(finalUrl, { scroll: false });
 }, [sort, minPrice, maxPrice, categoryFilter, brandsFilter, search, router]);
 
     function resetSearchFilters(){
@@ -65,10 +65,10 @@ const Filters = ({brands, categories}) => {
     }
 
     function handleBrandsFilter(brand){
-        setBrandsFilter((prev)=>{
-           return prev.includes(brand)
-            ? prev.filter((item)=>item != brand)
-            : [...prev, brand];
+        setBrandsFilter((previousBrands)=>{
+           return previousBrands.includes(brand)
+            ? previousBrands.filter((item)=>item != brand)
+            : [...previousBrands, brand];
         });
     }
     
@@ -90,6 +90,7 @@ const Filters = ({brands, categories}) => {
     <div className='py-2 w-1/2'> 
         <h4 className="text-sm font-medium mb-1">Sort By:</h4>
         <select value={sort} onChange={(event) => setSort(event.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 cursor-pointer">
+            <option value=""> Select Sort </option>
             <option value={JSON.stringify({ createdAt: -1 })}>Newest First</option>
             <option value={JSON.stringify({ price: 1 })}>Price: Low-High</option>
             <option value={JSON.stringify({ price: -1})}>Price: High-Low</option>
