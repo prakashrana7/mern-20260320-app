@@ -5,18 +5,28 @@ import { FaRegHeart } from "react-icons/fa";
 import AddToCart from "../_components/AddToCart";
 import ProductDescription from "./_components/ProductDescription";
 import SuggestedProducts from "./_components/SuggestedProducts";
+import { notFound } from "next/navigation";
 
 
 async function fetchProductById(id) {
+  try{
   const product = await getProductById(id);
-
-  return product;
+  return product || null;
+  } catch (error) {
+    console.error("Error fetching product:", error.message);
+    return null; 
+  }
 }
 
 export const generateMetadata = async ({ params }) => {
   const { id } = await params;
-
   const product = await fetchProductById(id);
+
+  if (!product) {
+    return {
+      title: "Product Not Found",
+    };
+  }
 
   return {
     title: product.name,
@@ -28,6 +38,10 @@ const ProductDetailsPage = async ({ params }) => {
   const { id } = await params;
 
   const product = await fetchProductById(id);
+
+  if (!product) {
+    notFound(); 
+  }
 
   return (
     <div>
