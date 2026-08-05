@@ -2,7 +2,7 @@
 
 import { PRODUCTS_ROUTE } from "@/constants/routes";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
     const DEFAULT_SORT = JSON.stringify({createdAt: -1});
     const DEFAULT_MIN_PRICE = "";
@@ -20,22 +20,40 @@ const Filters = ({brands, categories}) => {
     const [search, setSearch] = useState(DEFAULT_SEARCH);
 
     const router = useRouter();
+    const isFirstRender = useRef(true); 
 
     useEffect(() => {
+        const isPristine =
+            sort === DEFAULT_SORT &&
+            minPrice === DEFAULT_MIN_PRICE &&
+            maxPrice === DEFAULT_MAX_PRICE &&
+            categoryFilter === DEFAULT_CATEGORY &&
+            brandsFilter.length === 0 &&
+            search === DEFAULT_SEARCH;
+
+        if (isFirstRender.current && isPristine) {
+            isFirstRender.current = false;
+            return;
+        }
+
     const params = new URLSearchParams();
 
-    params.set("sort", sort);
-    params.set("min", minPrice || "0");
-    params.set("max", maxPrice || "10000000");
-    params.set("category", categoryFilter);
-    params.set("brands", brandsFilter.join(","));
-    params.set("name", search);
+    if (sort !== DEFAULT_SORT) params.set("sort", sort);
+    if (minPrice) params.set("min", minPrice);
+    if (maxPrice) params.set("max", maxPrice);
+    if (categoryFilter) params.set("category", categoryFilter);
+    if (brandsFilter.length > 0) params.set("brands", brandsFilter.join(","));
+    if (search) params.set("name", search);
 
-    router.push(`?${params.toString()}`, { scroll: false });
+    const queryString = params.toString();
+    const finalUrl = queryString ? `?${queryString}` : PRODUCTS_ROUTE;
 
+    router.push(finalUrl, { scroll: false });
 }, [sort, minPrice, maxPrice, categoryFilter, brandsFilter, search, router]);
 
     function resetSearchFilters(){
+        isFirstRender.current = true;
+
         setSort(DEFAULT_SORT);
         setMinPrice(DEFAULT_MIN_PRICE);
         setMaxPrice(DEFAULT_MAX_PRICE);
