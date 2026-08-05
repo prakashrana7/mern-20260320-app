@@ -102,7 +102,13 @@ const ProductForm = ({product, isEditing=false})=>{
 
         <div className="w-full">
           <label htmlFor="price" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price<span className="text-red-600 font-extrabold">*</span></label>
-          <input type="number" id="price" min="1" step="any" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Rs. 4999" {...register("price", { 
+          <input type="number" id="price" min="1" step="any" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Rs. 4999"
+          onKeyDown={(event) => {
+          if (event.key === "-" || event.key === "+" || event.key === "e") {
+          event.preventDefault();
+           }
+          }}
+              {...register("price", { 
               required: "Price value is required.",
               min: { value: 1, message: "Price must be at least Rs. 1." },
               max: { value: 1000000, message: "Price must be upto Rs. 10,00,000." },
@@ -123,7 +129,13 @@ const ProductForm = ({product, isEditing=false})=>{
 
         <div>
           <label htmlFor="stock" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock<span className="text-red-600 font-extrabold">*</span></label>
-          <input type="number" id="stock" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" defaultValue={1} {...register("stock", { 
+          <input type="number" id="stock" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" defaultValue={1}
+            onKeyDown={(event) => {
+          if (event.key === "-" || event.key === "+" || event.key === "e" || event.key === ".") {
+          event.preventDefault();
+          }
+           }}
+          {...register("stock", { 
               required: "Stock value is required.",
               min: { value: 0, message: "Stock cannot be negative values." },
               valueAsNumber: true

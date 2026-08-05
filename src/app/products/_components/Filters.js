@@ -5,10 +5,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
     const DEFAULT_SORT = JSON.stringify({createdAt: -1});
-    const DEFAULT_MIN_PRICE = 0;
-    const DEFAULT_MAX_PRICE = 10000000;
+    const DEFAULT_MIN_PRICE = "";
+    const DEFAULT_MAX_PRICE = "";
     const DEFAULT_CATEGORY = "";
     const DEFAULT_BRANDS = [];
+    const DEFAULT_SEARCH = "";
 
 const Filters = ({brands, categories}) => {
     const [sort, setSort]= useState(DEFAULT_SORT);
@@ -16,7 +17,7 @@ const Filters = ({brands, categories}) => {
     const [maxPrice, setMaxPrice] = useState(DEFAULT_MAX_PRICE);
     const [categoryFilter, setCategoryFilter] = useState(DEFAULT_CATEGORY);
     const [brandsFilter, setBrandsFilter] = useState(DEFAULT_BRANDS);
-    const [search, setSearch] = useState("");
+    const [search, setSearch] = useState(DEFAULT_SEARCH);
 
     const router = useRouter();
 
@@ -24,8 +25,8 @@ function applyFilters(){
     const params = new URLSearchParams();
 
     params.set("sort", sort);
-    params.set("min", minPrice);
-    params.set("max", maxPrice);
+    params.set("min", minPrice || "0");
+    params.set("max", maxPrice || "10000000");
     params.set("category", categoryFilter);
     params.set("brands", brandsFilter.join(","));
     params.set("name", search);
@@ -34,6 +35,13 @@ function applyFilters(){
     }
 
     function resetFilters(){
+        setSort(DEFAULT_SORT);
+        setMinPrice(DEFAULT_MIN_PRICE);
+        setMaxPrice(DEFAULT_MAX_PRICE);
+        setCategoryFilter(DEFAULT_CATEGORY);
+        setBrandsFilter(DEFAULT_BRANDS);
+        setSearch(DEFAULT_SEARCH);
+        
         router.replace(PRODUCTS_ROUTE);
     }
 
@@ -49,14 +57,14 @@ function applyFilters(){
     <div className="self-start sticky top-20 hidden md:block shadow-md rounded-2xl py-5 px-4">
      <div className='py-2'> 
         <h4 className="font-semibold">Search:</h4>
-       <input type="text" name="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Search Products..." onChange={(event) => setSearch(event.target.value)} />
+       <input type="text" name="name" value={search} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 cursor-pointer" placeholder="Search Products by Names..." onChange={(event) => setSearch(event.target.value)} />
         </div>
 
 <h3 className='font-semibold mt-4'>Product Filters</h3>
    <div className="flex gap-4 w-full">
     <div className='py-2 w-1/2'> 
         <h4 className="text-sm font-medium mb-1">Sort By:</h4>
-        <select onChange={(event) => setSort(event.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+        <select value={sort} onChange={(event) => setSort(event.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 cursor-pointer">
             <option value={JSON.stringify({ createdAt: -1 })}>Newest First</option>
             <option value={JSON.stringify({ price: 1 })}>Price: Low-High</option>
             <option value={JSON.stringify({ price: -1})}>Price: High-Low</option>
@@ -65,8 +73,8 @@ function applyFilters(){
     </div>
     
     <div className='py-2 w-1/2'> 
-        <h4 className="text-sm font-medium mb-1">Category:</h4>
-        <select onChange={(event) => setCategoryFilter(event.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+        <h4 className="text-sm font-medium mb-1 ">Category:</h4>
+        <select value={categoryFilter} onChange={(event) => setCategoryFilter(event.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 cursor-pointer">
             <option value="">Select Category</option>
             {categories?.map((category, index) => (
                 <option key={index} value={category}>{category}</option>
@@ -82,21 +90,44 @@ function applyFilters(){
             <label className='text-sm font-medium mb-1 block'>Min Price</label>
             <input 
                 type="number" 
-                name="min" 
+                name="min"
+                value={minPrice} 
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" 
-                placeholder="1000" 
+                placeholder="0" 
                 min={0} 
-                onChange={(event) => setMinPrice(event.target.value)} 
+                onKeyDown={(event) => {
+                    if (event.key === "-" || event.key === "+" || event.key === "e") {
+                        event.preventDefault();
+                    }
+                }}
+                onChange={(event) => {
+                    const val = event.target.value;
+                    if (val === "" || Number(val) >= 0) {
+                        setMinPrice(val);
+                    }
+                }}
             />
         </div>
         <div className="w-1/2">
             <label className='text-sm font-medium mb-1 block'>Max Price</label>
             <input 
                 type="number" 
-                name="max" 
+                name="max"
+                value={maxPrice}  
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" 
-                placeholder="999999999" 
-                onChange={(event) => setMaxPrice(event.target.value)} 
+                placeholder="10000000" 
+                min={0}
+                onKeyDown={(event) => {
+                    if (event.key === "-" || event.key === "+" || event.key === "e") {
+                        event.preventDefault();
+                    }
+                }}
+                onChange={(event) => {
+                    const val = event.target.value;
+                    if (val === "" || Number(val) >= 0) {
+                        setMaxPrice(val);
+                    }
+                }} 
             />
         </div>
     </div>
@@ -105,18 +136,18 @@ function applyFilters(){
     
      <div  className='py-2'> 
         <h4 className="text-sm mb-1">Brands:</h4>
-       <div>
+       <div className="max-h-28 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent cursor-pointer">
         {brands?.map((brand, index)=>(
              <div key={index} className="flex items-center mb-1">
-            <input id={brand} type="checkbox" defaultValue onChange={()=>handleBrandsFilter(brand)} className="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft" />
-            <label htmlFor={brand} className="select-none ms-2 text-sm font-medium text-heading">{brand}</label>
+            <input id={brand} type="checkbox"  checked={brandsFilter.includes(brand)} onChange={()=>handleBrandsFilter(brand)} className="w-4 h-4 border border-default-medium rounded-xs bg-neutral-secondary-medium focus:ring-2 focus:ring-brand-soft  cursor-pointer" />
+            <label htmlFor={brand} className="select-none ms-2 text-sm font-medium text-heading  cursor-pointer">{brand}</label>
         </div> 
         ))}
        </div>
     </div>
-    <div className='grid grid-cols-2 gap-3 pt-4'>
-        <button type="button" onClick={resetFilters} className='bg-red-600 w-full py-2 text-white rounded-xl'>Reset</button>
-        <button type="button" onClick={applyFilters} className='bg-blue-600 w-full py-2 text-white rounded-xl'>Apply</button>
+    <div className="grid grid-cols-2 gap-3 py-2 px-2 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 sticky bottom-0 z-10 rounded-xl">
+        <button type="button" onClick={resetFilters} className="bg-red-600 w-full py-2 text-white rounded-xl cursor-pointer hover:bg-red-700 font-medium text-center">Reset</button>
+        <button type="button" onClick={applyFilters} className="bg-blue-600 w-full py-2 text-white rounded-xl cursor-pointer hover:bg-blue-700 font-medium text-center">Apply</button>
     </div>
 </div>
   );
