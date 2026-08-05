@@ -52,6 +52,7 @@ const ProductDetailsPage = async ({ params }) => {
               (128 reviews)
             </p>
           </div>
+          <p>Brand: <strong>{product.brand}</strong></p>
           <h3 className="text-2xl font-semibold text-primary-dark py-3">
             Rs. {product.price}
           </h3>
