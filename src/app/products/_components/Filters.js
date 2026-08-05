@@ -2,7 +2,7 @@
 
 import { PRODUCTS_ROUTE } from "@/constants/routes";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
     const DEFAULT_SORT = JSON.stringify({createdAt: -1});
     const DEFAULT_MIN_PRICE = "";
@@ -21,7 +21,7 @@ const Filters = ({brands, categories}) => {
 
     const router = useRouter();
 
-function applyFilters(){
+    useEffect(() => {
     const params = new URLSearchParams();
 
     params.set("sort", sort);
@@ -31,10 +31,11 @@ function applyFilters(){
     params.set("brands", brandsFilter.join(","));
     params.set("name", search);
 
-    router.push(`?${params.toString()}`);
-    }
+    router.push(`?${params.toString()}`, { scroll: false });
 
-    function resetFilters(){
+}, [sort, minPrice, maxPrice, categoryFilter, brandsFilter, search, router]);
+
+    function resetSearchFilters(){
         setSort(DEFAULT_SORT);
         setMinPrice(DEFAULT_MIN_PRICE);
         setMaxPrice(DEFAULT_MAX_PRICE);
@@ -42,7 +43,7 @@ function applyFilters(){
         setBrandsFilter(DEFAULT_BRANDS);
         setSearch(DEFAULT_SEARCH);
         
-        router.replace(PRODUCTS_ROUTE);
+        router.replace(PRODUCTS_ROUTE, { scroll: false });
     }
 
     function handleBrandsFilter(brand){
@@ -54,8 +55,8 @@ function applyFilters(){
     }
     
   return (
-    <div className="self-start sticky top-20 hidden md:block shadow-md rounded-2xl py-5 px-4">
-     <div className='py-2'> 
+<div className="self-start sticky top-20 hidden md:block shadow-md rounded-2xl py-5 px-4 bg-white dark:bg-gray-900">
+    <div className='py-2'> 
         <h4 className="font-semibold">Search:</h4>
        <input type="text" name="name" value={search} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 cursor-pointer"
         placeholder="Search Products by Names..." 
@@ -64,7 +65,7 @@ function applyFilters(){
         setSearch(value.trim() === "" ? "" : value);
         }} 
         />
-        </div>
+    </div>
 
 <h3 className='font-semibold mt-4'>Product Filters</h3>
    <div className="flex gap-4 w-full">
@@ -87,7 +88,7 @@ function applyFilters(){
             ))}
         </select>
     </div>
-</div>
+   </div>
 
     <div className='py-2'> 
     <h4 className="text-sm">Price Range:</h4>
@@ -137,10 +138,9 @@ function applyFilters(){
             />
         </div>
     </div>
-</div>
-
+    </div>
     
-     <div  className='py-2'> 
+    <div  className='py-2'> 
         <h4 className="text-sm mb-1">Brands:</h4>
        <div className="max-h-28 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-300 dark:scrollbar-thumb-gray-600 scrollbar-track-transparent cursor-pointer">
         {brands?.map((brand, index)=>(
@@ -151,9 +151,8 @@ function applyFilters(){
         ))}
        </div>
     </div>
-    <div className="grid grid-cols-2 gap-3 py-2 px-2 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 sticky bottom-0 z-10 rounded-xl">
-        <button type="button" onClick={resetFilters} className="bg-red-600 w-full py-2 text-white rounded-xl cursor-pointer hover:bg-red-700 font-medium text-center">Reset</button>
-        <button type="button" onClick={applyFilters} className="bg-blue-600 w-full py-2 text-white rounded-xl cursor-pointer hover:bg-blue-700 font-medium text-center">Apply</button>
+    <div className="py-2 px-2 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 sticky bottom-0 z-10 rounded-xl">
+        <button type="button" onClick={resetSearchFilters} className="bg-red-600 w-full py-2 text-white rounded-xl cursor-pointer hover:bg-red-700 font-medium text-center">Reset Search & Filters</button>
     </div>
 </div>
   );
