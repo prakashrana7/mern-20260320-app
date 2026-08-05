@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
         <Image
           className="w-full h-40 object-cover"
           src={imageUrls[0]}
-          alt="featured"
+          alt={name}
           height={300}
           width={400}
         />
