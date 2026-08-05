@@ -25,7 +25,7 @@ const PayViaCash = ({orderId}) => {
   }
   return (
      <button onClick={initPayment} 
-     className="bg-green-600 text-white px-4 py-2 rounded-md shadow flex gap-2 items-center" 
+     className="bg-green-600 text-white px-4 py-2 rounded-md shadow flex gap-2 items-center cursor-pointer" 
     >
       <span>Cash</span>
    {loading ?<Spinner className="h-5! w-5!" />:<FaMoneyBill1Wave/>}

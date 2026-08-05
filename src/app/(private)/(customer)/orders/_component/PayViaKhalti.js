@@ -22,7 +22,7 @@ const PayViaKhalti = ({orderId}) => {
   }
   return (
      <button onClick={initKhaltiPayment} 
-     className="bg-white px-4 py-2 rounded-md shadow flex gap-2 items-center" 
+     className="bg-white px-4 py-2 rounded-md shadow flex gap-2 items-center cursor-pointer" 
     ><Image src={khaltiLogo} alt="khalti" 
     height={40} width={100} className="h-5 w-auto"/>
    {loading &&  <Spinner className="h-5! w-5!" />}</button>

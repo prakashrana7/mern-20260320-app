@@ -102,7 +102,7 @@ const ProductsTable = () => {
                       });
                     }
                   }
-                }><FaTrash className="text-red-600"/></button>
+                }><FaTrash className="text-red-600 cursor-pointer"/></button>
                 </div>
                   </td>
             </tr>
