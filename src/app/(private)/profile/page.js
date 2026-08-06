@@ -90,8 +90,8 @@ const ProfilePage = () => {
                   required {...register("phone", {
                   required: "Phone number is required.",
                   pattern: {
-                  value: /^\d{10}$/,
-                  message: "Phone number must be exactly 10 digits and contain only numbers."
+                  value: /^(98|97)\d{8}$/,
+                  message: "Phone number must start with 98 or 97 and contain exactly 10 digits."
                     }
                   })}/>
                   {errors?.phone && (
