@@ -46,8 +46,8 @@ const OrdersTable = () => {
             <tr>
               <th scope="col" className="px-4 py-3">S.N</th>
               <th scope="col" className="px-4 py-3">Order Number</th>
-              <th scope="col" className="px-4 py-3">Product</th>
-              <th scope="col" className="px-4 py-3">Customer</th>
+              <th scope="col" className="px-4 py-3 w-95">Product</th>
+              <th scope="col" className="px-4 py-3 w-60">Customer</th>
               <th scope="col" className="px-4 py-3">Total Price</th>
               <th scope="col" className="px-4 py-3">Status</th>
               <th scope="col" className="px-4 py-3">CreatedAT</th>
@@ -66,29 +66,28 @@ const OrdersTable = () => {
               <td className="px-4 py-2">
                 <span className="bg-primary/10 text-primary text-xs font-medium px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">{order.orderNumber}</span>
               </td>
-              <th scope="row" className="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                <div>
+              <td className="px-4 py-2 align-top text-gray-900 dark:text-white">
+                <div className="w-95 space-y-3">
                   {order.orderItems.map((item, index)=>(
-                <div key={index} className="flex items-center py-1">
+                <div key={index} className="flex gap-3 items-start">
                   {item.imageUrls.length > 0 ? (
                   <Image src={item.imageUrls[0]} 
                   alt={item.name} 
                   height={64} 
                   width={64} 
-                  className="w-12 h-12 mr-3 object-cover rounded" />
+                  className="w-12 h-12 object-cover rounded shrink-0" />
                 ):(
-                <FaImage className="w-12 h-12 mr-3 rounded text-gray-500"/>
+                <FaImage className="w-12 h-12 mr-3 rounded text-gray-500 shrink-0"/>
                 )}
-               <div>
-                 <p className="font-medium">{item.name}</p>
-                <span className="text-xs text-gray-500">{item.category},</span>
-                <span className="text-xs text-gray-500">{item.brand}</span>
+               <div className="min-w-0 flex-1">
+                 <p className="font-medium  wrap-break-word leading-5">{item.name}</p>
+                <p className="text-xs text-gray-500">{item.category}, {item.brand}</p>
                </div>
                </div>
                 ))}
                 </div>
-              </th>
-              <td className="px-4 py-2">
+              </td>
+              <td className="px-4 py-2 align-top w-60">
                 <h3 className="text-gray-800 dark:text-gray-100">{order.user.name}</h3>
                 <p className="text-xs">{order.user.email}</p>
                 <p className="text-xs">{order.user.phone}</p>
