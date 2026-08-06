@@ -3,10 +3,11 @@
 import { getAllOrders } from "@/api/orders";
 import { getProducts } from "@/api/product";
 import { getAllUsers } from "@/api/users";
+import { getContactCount } from "@/api/contact";
 import Spinner from "@/components/Spinner";
 import { ORDER_CONFIRMED, ORDER_PENDING } from "@/constants/orderStatus";
 import { useEffect, useState } from "react";
-import { FaCheckCircle, FaShoppingCart, FaUsers } from "react-icons/fa";
+import { FaCheckCircle, FaShoppingCart, FaUsers, FaEnvelope } from "react-icons/fa";
 import { FaClock } from "react-icons/fa6";
 
 const Card = ({ value, label, color, background, border, Icon }) => {
@@ -30,18 +31,21 @@ const DashboardPage = () => {
   const [orders, setOrders] = useState([]);
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
+  const [contactCount, setContactCount] = useState(0);
 
   async function fetchDashboardData() {
     try {
-      const [ordersRes, usersRes, productsRes] = await Promise.all([
+      const [ordersRes, usersRes, productsRes, contactCountRes] = await Promise.all([
       getAllOrders(),
       getAllUsers(),
       getProducts(),
+      getContactCount(),
       ]);
 
       setOrders(ordersRes?.data || []);
       setUsers(usersRes?.data || []);
       setProducts(productsRes?.data || productsRes || []); 
+      setContactCount(contactCountRes);
     } catch (error) {
       console.log("Dashboard fetching error:", error);
     }finally{
@@ -64,7 +68,7 @@ const DashboardPage = () => {
     );
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
       <Card
         Icon={FaShoppingCart}
         value={products.length}
@@ -96,6 +100,14 @@ const DashboardPage = () => {
         color="text-red-500"
         border="border-red-600"
         background="bg-red-100"
+      />
+      <Card
+        Icon={FaEnvelope}
+        value={contactCount}
+        label="New Contact Messages"
+        color="text-purple-500"
+        border="border-purple-600"
+        background="bg-purple-100"
       />
     </div>
   );
