@@ -6,13 +6,19 @@ const useAuthStore = create(
         user: null,
         isAuthenticated: false,
 
-        loginUser: ({user}) => 
-           {
-             set({
+        loginUser: ({user, remember }) => {
+        set({
             user,
             isAuthenticated: true,
         });
+
+        if(remember) {
         localStorage.setItem("authToken", user.token);
+        sessionStorage.removeItem("authToken");
+        } else {
+        sessionStorage.setItem("authToken", user.token);
+        localStorage.removeItem("authToken");
+        }
            },
 
         registerUser: ({user}) => 
@@ -28,12 +34,15 @@ const useAuthStore = create(
             set({ user });
         },
         
-        logout: () => 
+        logout: () => {
+            localStorage.removeItem("authToken");
+            sessionStorage.removeItem("authToken");
+
             set({
             user: null,
             isAuthenticated: false,
-        }),
-    }),
+            });
+        }}),
     {name:"zustand:auth-storage"},
     ),
 );

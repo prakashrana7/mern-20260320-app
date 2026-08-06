@@ -8,23 +8,40 @@ import { login } from '@/api/auth';
 import PasswordInput from '@/components/PasswordInput';
 import useAuthStore from '@/stores/authStore';
 import Spinner from '@/components/Spinner';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
 
 const LoginPage = () => {
-  const {register, handleSubmit, formState: { errors }} = useForm();
+  const {register, handleSubmit, formState: { errors }, setValue,} = useForm();
   const {loginUser}= useAuthStore.getState();
   const [loading, setLoading]= useState (false);
 
   const router = useRouter();
 
+  useEffect(() => {
+  const rememberedEmail = localStorage.getItem("rememberEmail");
+
+  if (rememberedEmail) {
+    setValue("email", rememberedEmail);
+    setValue("remember", true);
+  }
+}, [setValue]);
+
   function submitForm(data){
     setLoading(true);
     login(data)
     .then((response) => {
-      loginUser({user: response.data});
+      loginUser({
+        user: response.data,
+        remember: data.remember
+      });
       
+      if (data.remember) {
+  localStorage.setItem("rememberEmail", data.email);
+} else {
+  localStorage.removeItem("rememberEmail");
+}
       router.replace(HOME_ROUTE);
 
       toast.success("Login Successful")
@@ -67,7 +84,7 @@ const LoginPage = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-start">
               <div className="flex items-center h-5">
-                <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"/>
+                <input id="remember" aria-describedby="remember" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" {...register("remember")}/>
               </div>
               <div className="ml-3 text-sm">
                 <label htmlFor="remember" className="text-gray-500 dark:text-gray-300">Remember me</label>
