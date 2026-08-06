@@ -92,7 +92,7 @@ const ProductDetailsPage = async ({ params }) => {
         <h2 className="text-2xl font-semibold dark:text-white">
           You may also like
         </h2>
-        <SuggestedProducts category={product.category} />
+        <SuggestedProducts category={product.category} currentProductId={product._id}/>
       </div>
     </div>
   );
