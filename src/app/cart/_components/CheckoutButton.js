@@ -44,7 +44,7 @@ const CheckoutButton = ({ products, totalPrice }) => {
         }).finally(()=>setLoading(false));
     }
   return (
-    <button type="button" onClick={checkoutOrder} disabled={loading} className="flex w-full items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:bg-primary/90 focus:outline-none focus:ring-4 focus:ring-primary/20">
+    <button type="button" onClick={checkoutOrder} disabled={loading} className="flex w-full items-center justify-center rounded-lg bg-primary px-5 py-2.5 text-sm font-medium text-white hover:scale-105 focus:outline-none focus:ring-4 focus:ring-primary/20 cursor-pointer">
         Proceed to Checkout{loading && <Spinner className="h-6! w-6! ml-2"/>}</button>
   );
 };

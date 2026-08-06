@@ -16,7 +16,7 @@ const BestSeller = async () => {
             src={product?.imageUrls[0]}
             height={600}
             width={800}
-            alt="bestseller"
+            alt={product?.name}
           />
           <div>
             <h2 className="dark:text-white font-bold text-3xl">
@@ -30,7 +30,7 @@ const BestSeller = async () => {
             </h3>
             <Link
               href={`${PRODUCTS_ROUTE}/${config.bestSellerId}`}
-              className="inline-block bg-primary dark:bg-white rounded-3xl font-medium text-white dark:text-primary px-8 py-3 transition duration-300 ease mt-4"
+              className="inline-block bg-primary dark:bg-white rounded-3xl font-medium text-white dark:text-primary px-8 py-3 transition duration-300 ease mt-4 hover:scale-105"
             >
               View Product
             </Link>

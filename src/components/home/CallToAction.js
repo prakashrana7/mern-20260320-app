@@ -12,7 +12,7 @@ const CallToAction = () => {
               <p className="text-center text-gray-50">
                 You automatically receive up to 10% off your first online order after completing registration.
               </p>
-              <Link href={REGISTER_ROUTE} className="bg-white text-red-500 px-8 py-2 rounded-2xl hover:shadow-lg">
+              <Link href={REGISTER_ROUTE} className="bg-white text-red-500 px-8 py-2 rounded-2xl hover:shadow-lg hover:scale-105">
                 signup to get 10% off...
               </Link>
             </div>
