@@ -18,6 +18,8 @@ const Header = () => {
 
   const theme = usePreferenceStore((state) => state.theme);
   const products = useCartStore((state) => state.products);
+  const totalCartQuantity = products.reduce(
+    (total, product) => total + product.quantity, 0);
 
   const router = useRouter();
   const pathName = usePathname();
@@ -58,7 +60,7 @@ const Header = () => {
         <Link href={CART_ROUTE} className="flex items-center px-4 py-1.5 rounded-3xl bg-gray-100 dark:bg-gray-700 h-10 transition-colors">
           <span>🛒</span>
           <span className="ml-1 bg-primary px-2 py-0.5 text-xs rounded-xl text-white font-medium">
-            {products.length}
+            {totalCartQuantity}
           </span>
         </Link>
         {isAuthenticated ? (
