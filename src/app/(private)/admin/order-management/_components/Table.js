@@ -87,7 +87,7 @@ const OrdersTable = () => {
                 ))}
                 </div>
               </td>
-              <td className="px-4 py-2 align-top w-60">
+              <td className="px-4 py-2 font-medium whitespace-nowrap">
                 <h3 className="text-gray-800 dark:text-gray-100">{order.user.name}</h3>
                 <p className="text-xs">{order.user.email}</p>
                 <p className="text-xs">{order.user.phone}</p>
