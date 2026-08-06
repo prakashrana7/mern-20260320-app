@@ -40,7 +40,7 @@ const ProductImage = ({ imageUrls, productName, productCategory }) => {
               className={`relative h-20 w-20 overflow-hidden rounded-md border-2 transition-all focus-visible:outline-2 focus-visible:outline-blue-500 ${
                 isSelected 
                   ? "border-primary scale-110" 
-                  : "border-primary opacity-80 hover:opacity-100"
+                  : "border-primary opacity-70 hover:opacity-100"
               }`}
             >
           <Image
@@ -48,7 +48,7 @@ const ProductImage = ({ imageUrls, productName, productCategory }) => {
             alt=""
             height={250}
             width={250}
-            className="h-20 w-20 object-cover rounded-md border-2 border-primary/50"
+            className="h-20 w-20 object-cover rounded-md cursor-pointer"
           />
           </button>
         );
