@@ -98,7 +98,7 @@ const OrderPage = () => {
       </div>
       {order.status == ORDER_PENDING && (
       <div className="flex items-center gap-5 px-4">
-          <button className="bg-red-600 text-white px-4 py-2 rounded-md shadow cursor-pointer" 
+          <button className="bg-red-600 text-white px-4 py-2 rounded-md shadow cursor-pointer hover:scale-105" 
         onClick={() => handleCancelOrder(order._id)}
         >Cancel</button>
         <PayViaKhalti orderId={order._id}/>
