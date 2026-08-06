@@ -76,8 +76,8 @@ const RegisterPage = () => {
             <input type="tel" id="phone" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="98********" required {...register("phone", {
                   required: "Phone number is required.",
                   pattern: {
-                  value: /^\d{10}$/,
-                  message: "Phone number must be exactly 10 digits and contain only numbers."
+                  value: /^(98|97)\d{8}$/,
+                  message: "Phone number must start with 98 or 97 and contain exactly 10 digits."
                     }
                   })}/>
                   {errors?.phone && (
