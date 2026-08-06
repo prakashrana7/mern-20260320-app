@@ -171,7 +171,7 @@ const Filters = ({brands, categories}) => {
        </div>
     </div>
     <div className="py-2 px-2 border-t border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 sticky bottom-0 z-10 rounded-xl">
-        <button type="button" onClick={resetSearchFilters} className="bg-red-600 w-full py-2 text-white rounded-xl cursor-pointer hover:bg-red-700 font-medium text-center">Reset Search & Filters</button>
+        <button type="button" onClick={resetSearchFilters} className="bg-red-600 w-full py-2 text-white rounded-xl cursor-pointer hover:scale-105 font-medium text-center">Reset Search & Filters</button>
     </div>
 </div>
   );
