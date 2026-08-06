@@ -69,8 +69,8 @@ const Contact = () => {
              {...register("email", {
                   required: "Email is required.",
                   pattern: {
-                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                    message: "Please enter a valid email address.",
+                    value: /^[a-z0-9._%+-]+@(gmail|yahoo|outlook)\.com$/i, 
+                    message: "Please enter a valid Gmail, Yahoo, or Outlook email address.",
                   },
                 })}
               />
