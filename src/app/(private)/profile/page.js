@@ -44,7 +44,7 @@ const ProfilePage = () => {
       .catch((error) => {
         console.log(error);
 
-        toast.error(error.response.data);
+        toast.error(error.response?.data?.message);
       })
       .finally(() => setLoading(false));
   }
@@ -58,20 +58,25 @@ const ProfilePage = () => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
               Update your profile
             </h1>
-            <form onSubmit={handleSubmit(submitForm)} className="space-y-4 md:space-y-6" action="#">
+            <form onSubmit={handleSubmit(submitForm)} className="space-y-4 md:space-y-6">
               <div>
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name<span className="text-red-600 font-extrabold">*</span></label>
                 <input type="text" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Prakash Rana" required {...register("name", {
-                  required: "User name is required.",
+                  placeholder="Enter you Name" 
+                  {...register("name", {
+                  required: "Name is required.",
                   minLength: {
                   value: 3,
-                  message: "User name must be at least 3 characters.",
+                  message: "Name must be at least 3 characters.",
                   },
                   maxLength: {
                   value: 50,
-                  message: "User name cannot exceed 50 characters.",
+                  message: "Name cannot exceed 50 characters.",
                   },
+                  pattern: {
+                  value: /^[A-Za-z]+(?: [A-Za-z]+)*$/,
+                  message: "Name can contain letters and spaces only.",
+                 },
                 })}/>
                {errors.name && (
               <p className="text-xs text-red-600 mt-1 block">
@@ -79,15 +84,18 @@ const ProfilePage = () => {
               </p>
               )}
               </div>
+
               <div>
                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white" >Email</label>
                 <input type="email" id="email" className="disabled:bg-gray-100 dark:disabled:bg-gray-600 disabled:text-gray-400 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="name@gmail.com" required disabled {...register("email")}/>
               </div>
+
               <div>
                 <label htmlFor="phone" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number<span className="text-red-600 font-extrabold">*</span></label>
-                <input type="tel" id="phone" placeholder="98********" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  required {...register("phone", {
+                <input type="tel" id="phone" inputMode="numeric" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="98********" 
+                  {...register("phone", {
                   required: "Phone number is required.",
                   pattern: {
                   value: /^(98|97)\d{8}$/,
@@ -103,7 +111,8 @@ const ProfilePage = () => {
               <div>
                 <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Address<span className="text-red-600 font-extrabold">*</span></label>
                 <input type="text" id="city" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                  placeholder="Kanchanpur" required {...register("city", {
+                  placeholder="Kanchanpur" 
+                  {...register("city", {
                   required: "Local Address is required.",
                   minLength: {
                   value: 3,
@@ -113,7 +122,10 @@ const ProfilePage = () => {
                   value: 150,
                   message: "Local Address cannot exceed 150 characters.",
                   },
-                  
+                  pattern: {
+                  value: /^[A-Za-z0-9][A-Za-z0-9\s,-]*[A-Za-z0-9]$/,
+                  message: "Please enter a valid city.",
+                  }
                 })}/>
                  {errors.city && (
               <p className="text-xs text-red-600 mt-1 block">
