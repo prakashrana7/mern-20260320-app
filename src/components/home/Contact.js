@@ -54,6 +54,10 @@ const Contact = () => {
                     value: 50,
                     message: "Name cannot exceed 50 characters.",
                   },
+                  pattern: {
+                  value: /^[A-Za-z]+(?: [A-Za-z]+)*$/,
+                  message: "Name can contain letters and spaces only.",
+              },
                 })}
               />
 
@@ -113,6 +117,7 @@ const Contact = () => {
                     value: 500,
                     message: "Message cannot exceed 500 characters.",
                   },
+                   setValueAs: (value) => value.trimStart(),
                 })}
               />
 
