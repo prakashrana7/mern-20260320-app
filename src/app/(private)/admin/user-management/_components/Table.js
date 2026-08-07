@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { useEffect, useState } from "react";
 import { FaCog } from "react-icons/fa";
 import EditUser from "./EditUser";
+import { toast } from "react-toastify";
 
 
 const UsersTable = () => {
@@ -18,6 +19,7 @@ const UsersTable = () => {
             setUsers(response.data);
           } catch (error) {
             console.log(error);
+            toast.error("Unable to load users. Please try again later.");
           } finally {
             setLoading(false);
           }

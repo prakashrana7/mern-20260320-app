@@ -23,7 +23,10 @@ const ProductsTable = () => {
         .then((data) =>{
           setProducts(data);
         })
-        .catch((error) => console.log(error))
+        .catch((error) => {
+          console.log(error);
+          toast.error("Unable to load products. Please try again later.");
+          })
         .finally(()=> setLoading(false));
     }
 

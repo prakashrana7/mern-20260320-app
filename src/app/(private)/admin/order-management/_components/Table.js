@@ -10,6 +10,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { FaCog, FaImage } from "react-icons/fa";
 import EditOrder from "./EditOrder";
+import { toast } from "react-toastify";
 
 const OrdersTable = () => {
     const [orders, setOrders]= useState([]);
@@ -25,6 +26,7 @@ const OrdersTable = () => {
     setOrders(response.data);
     } catch (error) {
       console.log(error);
+      toast.error("Unable to load orders. Please try again later.");
     } finally {
       setLoading(false);
       }

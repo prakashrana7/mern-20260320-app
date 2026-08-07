@@ -9,6 +9,7 @@ import { ORDER_CONFIRMED, ORDER_PENDING } from "@/constants/orderStatus";
 import { useEffect, useState } from "react";
 import { FaCheckCircle, FaShoppingCart, FaUsers, FaEnvelope } from "react-icons/fa";
 import { FaClock } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 const Card = ({ value, label, color, background, border, Icon }) => {
   return (
@@ -47,7 +48,8 @@ const DashboardPage = () => {
       setProducts(productsRes?.data || productsRes || []); 
       setContactCount(contactCountRes);
     } catch (error) {
-      console.log("Dashboard fetching error:", error);
+      console.log(error);
+       toast.error("Unable to load the dashboard. Server is unavailable. Please try again later.");
     }finally{
       setLoading(false);
     }

@@ -2,6 +2,7 @@
 
 import config from "@/config";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const api = axios.create({
     baseURL: config.apiUrl,
