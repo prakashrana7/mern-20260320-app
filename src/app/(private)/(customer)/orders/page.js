@@ -1,17 +1,15 @@
 "use client";
 
-import { cancelOrder, getOrdersByUser } from "@/api/orders";
+import { getOrdersByUser } from "@/api/orders";
 import { useEffect, useState } from "react";
 import OrderTable  from "./_component/OrderTable";
 import { format } from "date-fns";
 import Spinner from "@/components/Spinner";
-import { toast } from "react-toastify";
-import PayViaKhalti from "./_component/PayViaKhalti";
-import PayViaCash from "./_component/PayViaCash";
 import OrderStatus from "@/components/orders/OrderStatus";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ORDERS_ROUTE } from "@/constants/routes";
-import { ORDER_PENDING } from "@/constants/orderStatus";
+import OrderActions from "./_component/OrderActions";
+import { ORDER_CANCELLED } from "@/constants/orderStatus";
 
 
 const OrderPage = () => {
@@ -29,23 +27,21 @@ const OrderPage = () => {
   }
 
   useEffect(()=>{
+    setLoading(true);
     getOrdersByUser(orderStatus ?? "")
     .then((res)=>setOrders(res.data))
     .catch((error)=>{
       console.log(error);
 
-      throw error;
     })
     .finally(()=> setLoading(false));
   },[orderStatus]);
 
-  function handleCancelOrder(orderId){
-    if (confirm("Are you sure?")){
-            cancelOrder(orderId).then(()=>{
-              toast.info("Order cancelled!");
-            })
-            .catch((error)=> console.log(error));
-          }
+  function handleOrderCancelled(orderId){
+    setOrders((prevOrders) =>
+        prevOrders.map((order) =>
+          order._id === orderId ? {
+        ...order, status: ORDER_CANCELLED, } : order));
         }
 
   if(loading)
@@ -60,7 +56,7 @@ const OrderPage = () => {
      <label htmlFor="status" className="mb-2.5 text-sm font-medium text-heading mr-2">Filter by Status:</label>
     <select id="status" className="dark:bg-gray-800 mb-10 w-max px-3 py-2.5 border border-gray-200 text-heading text-sm rounded-md focus:ring-brand focus:border-brand shadow-xs placeholder:text-body"
      onChange={(e)=>handleStatusChange(e.target.value)} 
-     defaultValue={orderStatus}>
+     defaultValue={orderStatus ?? ""}>
     <option value="">All</option>
     <option value="PENDING">Pending</option>
     <option value="CONFIRMED">Confirmed</option>
@@ -96,15 +92,7 @@ const OrderPage = () => {
       Rs. {order.totalPrice}
       </p>
       </div>
-      {order.status == ORDER_PENDING && (
-      <div className="flex items-center gap-5 px-4">
-          <button className="bg-red-600 text-white px-4 py-2 rounded-md shadow cursor-pointer hover:scale-105" 
-        onClick={() => handleCancelOrder(order._id)}
-        >Cancel</button>
-        <PayViaKhalti orderId={order._id}/>
-        <PayViaCash orderId={order._id}/>
-      </div>
-      )}
+    <OrderActions order={order} onOrderCancelled={ handleOrderCancelled }/>
     </div>
     <OrderTable key={index} order={order} />
     </div>

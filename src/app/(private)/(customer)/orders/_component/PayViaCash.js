@@ -16,7 +16,7 @@ const PayViaCash = ({orderId}) => {
     setLoading(true);
     payViaCash(orderId)
     .then(() => {
-      router.push(`${ORDERS_ROUTE}/confirmation/${orderId}?status=Completed`);
+      router.push(`${ORDERS_ROUTE}/confirmation/${orderId}?status=Cash`);
     })
     .catch((error) => {
       console.log(error);
@@ -24,13 +24,13 @@ const PayViaCash = ({orderId}) => {
     .finally(() => setLoading(false));
   }
   return (
-     <button onClick={initPayment} 
-     className="bg-green-600 text-white px-4 py-2 rounded-md shadow flex gap-2 items-center cursor-pointer hover:scale-105" 
+     <button onClick={initPayment}  disabled={loading}
+     className="bg-green-600 text-white px-4 py-2 rounded-md shadow flex gap-2 items-center cursor-pointer hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed" 
     >
-      <span>Cash</span>
-   {loading ?<Spinner className="h-5! w-5!" />:<FaMoneyBill1Wave/>}
+     <FaMoneyBill1Wave/>
+   {loading ?<Spinner className="h-5! w-5!" />:"Cash"}
    </button>
-  )
-}
+  );
+};
 
-export default PayViaCash
+export default PayViaCash;
