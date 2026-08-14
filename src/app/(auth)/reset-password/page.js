@@ -29,7 +29,16 @@ const ResetPasswordPage = () => {
 
         reset();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.error("Reset password error:", error);
+
+        const message =
+        error?.response?.data?.message ||
+        (typeof error?.response?.data === "string" ? error.response.data
+          : "Unable to reset your password. Please try again.");
+
+      toast.error(message);
+    });
   }
 
   return (

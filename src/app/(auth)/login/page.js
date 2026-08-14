@@ -47,8 +47,14 @@ const LoginPage = () => {
       toast.success("Login Successful")
     })
     .catch((error) => {
-      console.log(error);
-      toast.error(error.response.data);
+      console.log("Login error:",error);
+
+      const message = error?.response?.data?.message ||
+        (typeof error?.response?.data === "string"
+          ? error.response.data
+          : "Unable to login. Please try again.");
+
+      toast.error(message);
     })
     .finally(()=>setLoading(false));
   }

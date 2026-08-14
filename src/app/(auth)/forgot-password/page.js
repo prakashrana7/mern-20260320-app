@@ -14,7 +14,15 @@ const ForgotPasswordPage = () => {
 
         reset();
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.error("Forgot password error:", error);
+
+        const message = error?.response?.data?.message ||
+        (typeof error?.response?.data === "string" ? error.response.data
+          : "Unable to send password reset email. Please try again.");
+
+      toast.error(message);
+    });
   }
 
   return (

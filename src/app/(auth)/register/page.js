@@ -38,8 +38,13 @@ function submitForm(data){
          toast.success("Register Successful")
        })
        .catch((error) => {
-         console.log(error);
-         toast.error(error.response.data);
+        console.log("Register error:", error);
+
+        const message = error?.response?.data?.message ||
+        (typeof error?.response?.data === "string" ? error.response.data
+          : "Unable to create your account. Please try again.");
+
+         toast.error(message);
        })
        .finally(()=>setLoading(false));
     }
