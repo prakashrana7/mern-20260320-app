@@ -97,6 +97,9 @@ const Contact = () => {
                   },
                 })}
               />
+              <p className="text-xs text-gray-500 mt-1">
+                Enter a 10-digit Nepali Mobile Number Country Code is Not Required, e.g. 9812345678.
+              </p>
 
               {errors.phone && (
                 <p className="text-xs text-red-600 mt-1">
@@ -140,7 +143,7 @@ const Contact = () => {
             <p className="text-light dark:text-gray-100 text-sm my-4">
               Have any Questions? Please reach out to us.
             </p>
-            <a href="https://maps.app.goo.gl/7VMYau6uVzXk4kJ99" target="_blank"  rel="noopener noreferrer" className="m-1 text-sm block hover:text-primary">📍 Mahendranagar, Kanchanpur, Sudurpaschim Pardesh</a>
+            <a href="https://maps.app.goo.gl/7VMYau6uVzXk4kJ99" target="_blank"  rel="noopener noreferrer" className="m-1 text-sm block hover:text-primary">📍 Mahendranagar, Kanchanpur, Sudurpaschim Pradesh</a>
             <a href="mailto:stepstylefootwearshop@gmail.com" className="m-1 text-sm block hover:text-primary">📨 stepstylefootwearshop@gmail.com</a>
             <a href="tel:+977 9810302011" className="m-1 text-sm block hover:text-primary">📞 +977 9810302011</a>
             <a href="https://wa.me/9810302011" target="_blank"  rel="noopener noreferrer" className="m-1 text-sm block hover:text-primary">💬 9810302011</a>
