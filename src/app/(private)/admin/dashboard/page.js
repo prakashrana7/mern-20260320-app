@@ -14,14 +14,14 @@ import { toast } from "react-toastify";
 const Card = ({ value, label, color, background, border, Icon }) => {
   return (
     <div
-      className={`h-40 w-full bg-white dark:bg-gray-950 dark:text-white shadow-md rounded-xl border-r-4 ${border} px-8 py-5 flex items-center gap-5`}
+      className={`min-w-0 w-full min-h-40 bg-white dark:bg-gray-950 dark:text-white shadow-md rounded-xl border-r-4 ${border} px-4 sm:px-5 py-5 flex items-center gap-3`}
     >
-      <div className={`${background} p-5 w-max rounded-full`}>
-        <Icon className={`text-3xl ${color}`} />
+      <div className={`${background} p-4 shrink-0 rounded-full`}>
+        <Icon className={`text-3xl sm:text-3xl ${color}`} />
       </div>
-      <div>
-        <h2 className="font-semibold text-5xl">{value}</h2>
-        <p className="text-lg text-gray-500 dark:text-gray-700">{label}</p>
+      <div className="min-w-0 flex-1">
+        <h2 className="font-semibold text-4xl sm:text-5xl leading-none">{value}</h2>
+        <p className="mt-2 text-base sm:text-lg text-gray-500 dark:text-gray-400 wrap-break-word leading-tight">{label}</p>
       </div>
     </div>
   );

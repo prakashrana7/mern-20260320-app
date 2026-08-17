@@ -2,7 +2,7 @@
 
 import SocialallLogins from '../_components/SocialallLogins'
 import Link from 'next/link'
-import { FORGOT_PASSWORD_ROUTE, HOME_ROUTE, REGISTER_ROUTE } from '@/constants/routes'
+import { FORGOT_PASSWORD_ROUTE, HOME_ROUTE, REGISTER_ROUTE, DASHBOARD_ROUTE } from '@/constants/routes'
 import { useForm } from 'react-hook-form';
 import { login } from '@/api/auth';
 import PasswordInput from '@/components/PasswordInput';
@@ -11,6 +11,7 @@ import Spinner from '@/components/Spinner';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/navigation';
+import { ROLE_ADMIN } from '@/constants/userRoles';
 
 const LoginPage = () => {
   const {register, handleSubmit, formState: { errors }, setValue,} = useForm();
@@ -42,8 +43,11 @@ const LoginPage = () => {
 } else {
   localStorage.removeItem("rememberEmail");
 }
+if (response.data?.roles?.includes(ROLE_ADMIN)) {
+    router.replace(DASHBOARD_ROUTE);
+  } else {
       router.replace(HOME_ROUTE);
-
+  }
       toast.success("Login Successful")
     })
     .catch((error) => {
