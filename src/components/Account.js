@@ -1,8 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import placeholder from "@/assets/images/placeholder.png";
 import useAuthStore from "@/stores/authStore";
 import Link from "next/link";
-import { DASHBOARD_ROUTE, LOGIN_ROUTE, ORDERS_ROUTE, PROFILE_ROUTE, } from "@/constants/routes";
+import { DASHBOARD_ROUTE, LOGIN_ROUTE, ORDERS_ROUTE, ORDER_MANAGEMENT_ROUTE, PROFILE_ROUTE, } from "@/constants/routes";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ROLE_ADMIN, ROLE_MERCHANT } from "@/constants/userRoles";
@@ -13,12 +15,13 @@ const Account = () => {
   const { logout } = useAuthStore.getState();
 
   const popoverRef = useRef();
-
   const router = useRouter();
+
+  const isAdmin = user?.roles?.includes(ROLE_ADMIN);
+  const isMerchant = user?.roles?.includes(ROLE_MERCHANT);
 
   function handleLogout() {
     logout();
-
     router.replace(LOGIN_ROUTE);
   }
 
@@ -40,9 +43,10 @@ const Account = () => {
     <div
       className="relative"
       ref={popoverRef}
-      onClick={() => setIsOpen(!isOpen)}
     >
-      <button type="button">
+      <button type="button"
+       onClick={() => setIsOpen((prev) => !prev)}
+       >
         <Image
           src={user?.profileImageUrl ?? placeholder}
           alt=""
@@ -56,20 +60,39 @@ const Account = () => {
         <div className="absolute top-12 right-0 bg-white dark:bg-gray-900 rounded-xl p-2 min-w-32 flex flex-col gap-1 shadow-md">
           <Link
             href={PROFILE_ROUTE}
+            onClick={() => setIsOpen(false)}
             className="bg-gray-50 dark:bg-gray-800 dark:text-white px-4 py-1 rounded-md"
           >
             Account
           </Link>
+
+           {/* Customer Orders */}
+          {!isAdmin && !isMerchant && (
           <Link
             href={ORDERS_ROUTE}
+            onClick={() => setIsOpen(false)}
             className="bg-gray-50 dark:bg-gray-800 dark:text-white px-4 py-1 rounded-md"
           >
             Orders
           </Link>
-          {(user.roles.includes(ROLE_ADMIN) ||
-            user.roles.includes(ROLE_MERCHANT)) && (
+            )}
+
+          {/* Admin / Merchant Order Management */}
+          {(isAdmin || isMerchant) && (
             <Link
+              href={ORDER_MANAGEMENT_ROUTE}
+              onClick={() => setIsOpen(false)}
+              className="bg-gray-50 dark:bg-gray-800 dark:text-white px-4 py-1 rounded-md"
+            >
+              Orders
+            </Link>
+          )}
+
+          {/* Admin / Merchant Dashboard */}
+          {(isAdmin || isMerchant) && (
+          <Link
               href={DASHBOARD_ROUTE}
+              onClick={() => setIsOpen(false)}
               className="bg-gray-50 dark:bg-gray-800 dark:text-white px-4 py-1 rounded-md"
             >
               Dashboard
