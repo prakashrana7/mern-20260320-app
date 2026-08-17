@@ -4,7 +4,7 @@ import { deleteContact, getContacts, markAsRead } from "@/api/contact";
 import Spinner from "@/components/Spinner";
 import { format } from "date-fns";
 import { useEffect, useState } from "react";
-import { FaCog, FaEye, FaTrash, FaEnvelopeOpen } from "react-icons/fa";
+import { FaCog, FaEye, FaTrash, FaEnvelope } from "react-icons/fa";
 import { toast } from "react-toastify";
 
 const ContactTable = () => {
@@ -121,8 +121,10 @@ const ContactTable = () => {
                                 toast.error("Something went wrong.")
                               );
                           }}
+                          title="Mark as Read"
+                          aria-label="Mark message as read"
                         >
-                          <FaEnvelopeOpen className="text-green-600 cursor-pointer" />
+                          <FaEnvelope className="text-green-600 cursor-pointer" />
                         </button>
                       )}
 
