@@ -53,8 +53,8 @@ const OrdersTable = () => {
               <th scope="col" className="px-4 py-3">Total Price</th>
               <th scope="col" className="px-4 py-3"> Payment Method </th> 
               <th scope="col" className="px-4 py-3"> Payment Status </th>
-              <th scope="col" className="px-4 py-3">Status</th>
-              <th scope="col" className="px-4 py-3">CreatedAT</th>
+              <th scope="col" className="px-4 py-3">Order Status</th>
+              <th scope="col" className="px-4 py-3">Created AT</th>
               <th scope="col" className="px-4 py-3"><FaCog/></th>
             </tr>
           </thead>

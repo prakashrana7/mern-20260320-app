@@ -45,7 +45,7 @@ const UsersTable = () => {
               <th scope="col" className="px-4 py-3">Phone</th>
               <th scope="col" className="px-4 py-3">Address</th>
               <th scope="col" className="px-4 py-3">Roles</th>
-              <th scope="col" className="px-4 py-3">CreatedAT</th>
+              <th scope="col" className="px-4 py-3">Created AT</th>
               <th scope="col" className="px-4 py-3"><FaCog/></th>
             </tr>
           </thead>

@@ -90,7 +90,7 @@ const ProductsTable = ({currentPage, productsPerPage, onTotalChange,}) => {
               <th scope="col" className="px-4 py-3">Brand</th>
               <th scope="col" className="px-4 py-3">Price</th>
               <th scope="col" className="px-4 py-3">Stock</th>
-              <th scope="col" className="px-4 py-3">CreatedAT</th>
+              <th scope="col" className="px-4 py-3">Created AT</th>
               <th scope="col" className="px-4 py-3"><FaCog/></th>
             </tr>
           </thead>
